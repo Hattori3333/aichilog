@@ -11,23 +11,22 @@
             <div class="app-title">
                 <h1>ログイン</h1>
             </div>
-
+            <form action="login.php" method="post">
             <div class="login-form">
                 <div class="control-group">
-                    <input type="email" class="login-field" value="" placeholder="email address" id="login-email">
+                    <input type="email" class="login-field" value="" placeholder="email address" id="login-email" name="mailaddress">
                     <label class="login-field-icon fui-user" for="login-email"></label>
                 </div>
 
                 <div class="control-group">
-                    <input type="password" class="login-field" value="" placeholder="password" id="login-pass">
+                    <input type="password" class="login-field" value="" placeholder="password" id="login-pass" name="password">
                     <label class="login-field-icon fui-lock" for="login-pass"></label>
                 </div>
 
                 <a class="btn btn-primary btn-large btn-block" href="#">login</a>
                 <a class="login-link" href="account_registration.html">アカウントを登録するにはここをクリックしてください</a>
-
-
             </div>
+            </form>
         </div>
     </div>
 </body>
