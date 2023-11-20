@@ -14,29 +14,31 @@
 
             <div class="login-form">
                 <div class="control-group">
-                    <input type="email" class="login-field" value="" placeholder="email address" id="login-email">
+                    <input type="email" class="login-field" value="" placeholder="メールアドレス" id="login-email">
                     <label class="login-field-icon fui-user" for="login-email"></label>
                 </div>
 
                 <div class="control-group">
-                    <input type="password" class="login-field" value="" placeholder="username" id="login-name">
+                    <input type="text" class="login-field" value="" placeholder="ユーザ名" id="login-name">
                     <label class="login-field-icon fui-lock" for="login-name"></label>
                 </div>
 
                 <div class="control-group">
-                    <input type="password" class="login-field" value="" placeholder="password" id="login-pass">
+                    <input type="password" class="login-field" value="" placeholder="パスワード" id="login-pass">
                     <label class="login-field-icon fui-lock" for="login-pass"></label>
                 </div>
 
                 <div class="control-group">
-                    <input type="password" class="login-field" value="" placeholder="Password confirmation" id="login-pass">
-                    <label class="login-field-icon fui-lock" for="login-pass"></label>
+                    <input type="password" class="login-field" value="" placeholder="パスワード確認" id="confirm-pass">
+                    <label class="login-field-icon fui-lock" for="confirm-pass"></label>
                 </div>
 
-                <a class="btn btn-primary btn-large btn-block" href="#">登録</a>
+                <button id="register-btn" class="btn btn-primary btn-large btn-block">登録</button>
                 <a class="login-link" href="login.html">キャンセル</a>
             </div>
         </div>
     </div>
+
+    <script src="account_registration.js"></script>
 </body>
 </html>

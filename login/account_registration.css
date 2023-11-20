@@ -76,3 +76,8 @@
       display: block;
       margin-top: 12px;
     }
+
+    .error-message {
+      color: red;
+      display: none;
+  }
