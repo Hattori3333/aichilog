@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>アカウント情報編集</title>
+    <link rel="stylesheet" type="text/css" href="EditAccountInformation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="login">
+        <div class="login-screen">
+            <div class="app-title">
+                <h2><div class="account-info-text" id="account-info">アカウント情報編集</div></h2>
+                <h3>アカウント情報</h3>
+            </div>
+
+            <div class="container">
+                <div class="control-group">
+                    <input type="text" class="login-field" value="" placeholder="ユーザ名" id="username" readonly required>
+                    <label class="login-field-icon fui-user" for="login-username"></label>
+                </div>
+        
+                <div class="control-group">
+                    <input type="email" class="login-field" value="" placeholder="メールアドレス" id="email" readonly required>
+                    <label class="login-field-icon fui-lock" for="login-email"></label>
+                </div>
+        
+                <div class="control-group">
+                    <input type="password" class="login-field" value="" placeholder="パスワード" id="password" readonly required>
+                    <label class="login-field-icon fui-lock" for="login-pass"></label>
+                </div>
+
+                <div class="control-group">
+                    <input type="password" class="login-field" value="" placeholder="パスワード確認" id="confirm-password" readonly required>
+                    <label class="login-field-icon fui-lock" for="confirm-password"></label>
+                </div>
+
+                <div class="control-group">
+                    <input type="file" id="profile-image" name="profile-image" required>
+                    <label class="login-field-icon fui-lock" for="profile-image"></label>
+                </div>
+        
+                <!-- エラーメッセージ -->
+                <p class="error-message" style="color: red; display: none;">アカウント情報編集をクリックしてください</p>
+
+                <!-- 保存ボタン -->
+                <button id="save-button" class="btn">変更を保存</button>
+                
+                <!-- キャンセルボタン -->
+                <p class="signup-link"><a href="#" id="cancel-button">キャンセル</a></p>
+                <a class="login-link" href="">戻る</a>
+
+
+            </div>
+        </div>
+    </div>
+
+    <script src="edit_accountInformation.js"></script>
+</body>
+</html>

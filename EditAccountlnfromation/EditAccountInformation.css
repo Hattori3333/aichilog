@@ -1,0 +1,151 @@
+* {
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+
+body {
+  font-family: Arial;
+  background-color: #3498DB;
+  padding: 50px;
+}
+
+.login {
+  margin: 20px auto;
+  width: 500px;
+}
+
+.login-screen {
+  background-color: #FFF;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center; /* 中央揃えを追加 */
+}
+
+.app-title {
+  text-align: center;
+  color: #777;
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  text-align: center; /* 中央揃えを追加 */
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.control-group {
+  margin-bottom: 10px;
+}
+
+input {
+  text-align: center;
+  background-color: #ECF0F1;
+  border: 3px solid transparent;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 200;
+  padding: 10px 0;
+  width: 290px;
+  transition: border .5s;
+}
+
+.btn {
+  border: 2px solid transparent;
+  background: #3498DB;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 25px;
+  padding: 10px 0;
+  text-decoration: none;
+  text-shadow: none;
+  border-radius: 3px;
+  box-shadow: none;
+  transition: 0.25s;
+  display: block;
+  width: 250px;
+  margin: 0 auto;
+}
+
+.signup-link {
+  margin-top: 20px;
+}
+
+.account-info-text {
+  border: 1px solid black;
+  padding: 5px 10px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0;
+  cursor: pointer;
+}
+
+.account-info-text:hover {
+  color: blue;
+}
+
+.account-info-text:active,
+.account-info-text.active {
+  color: blue;
+}
+
+.active {
+  background-color: rgba(0, 0, 0, 0.2); /* アクティブ時の背景色を設定 */
+}
+
+
+  h2 {
+      margin-left: -160px; /* テキストを左に20px移動 */
+  }
+  
+  .account-info-text {
+      border: 1px solid black; /* 線のスタイル */
+      padding: 5px 10px; /* 上下の余白5px、左右の余白10px */
+      border-radius: 3px; /* 角の丸み */
+      display: inline-block; /* テキストの横幅に合わせて配置 */
+      margin: 0; /* 外側のマージンをリセット */
+    }
+
+    .account-info-text:hover {
+      color: blue; /* マウスオーバー時の色を青に設定 */
+      cursor: pointer; /* マウスオーバー時にポインターカーソルを表示 */
+  }
+  
+  .account-info-text:active,
+  .account-info-text.active {
+  color: blue; /* 押された状態やアクティブ状態の色を青に設定 */
+  }
+
+
+
+/* プロフィール画像アイコンのスタイル */
+.profile-icon {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.profile-icon input[type="file"] {
+  display: none;
+}
+
+.profile-icon label {
+  display: inline-block;
+  font-size: 30px;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.profile-icon label:hover {
+  color: #333;
+}
