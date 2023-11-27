@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="jp">
 <head>
@@ -9,12 +12,22 @@
     <header id="header">
         <h1 class="logo"><a href="#">AICHI-LOG</a></h1>
         <nav>
-        <ul class="nav__list">
-            <li class="nav__item"><a href="login\login.html">LOGIN</a></li>
-        </ul>
+            <ul class="nav__list" id="navList">
+                <li class="nav__item" id="loginNavItem"><a href="../login/login.html">LOGIN</a></li>
+            </ul>
         </nav>
     </header>
     <h1>www</h1>
+
+    <script>
+        // セッションからユーザー名を取得
+        var username = "<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : ''; ?>";
+
+        // ユーザー名が存在する場合、ナビゲーションメニューのテキストを変更
+        if (username) {
+            document.getElementById("navList").innerHTML = '<li class="nav__item" id="usernameNavItem">' + username + '</li>' +
+                '<li class="nav__item"><a href="../logout/logout.php">LOGOUT</a></li>';
+        }
+    </script>
 </body>
 </html>
-
