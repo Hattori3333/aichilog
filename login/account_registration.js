@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (isAnyFieldEmpty) {
             alert("いずれかの項目が入力されていません。");
+        } else if (passwordInput.value !== confirmPasswordInput.value) {
+            alert("パスワードと一致しません。");
         } else {
             alert("保存しました");
         }
