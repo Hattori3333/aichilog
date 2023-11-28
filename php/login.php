@@ -26,6 +26,8 @@ try {
         if ($user && $user_input_password === $user['password']) {
             // ログイン成功時にセッションにユーザー名を保存
             $_SESSION['username'] = $user['username'];
+            $_SESSION['email'] = $user['emailaddress'];
+            $_SESSION['password'] = $user['password'];
 
             // ログイン成功時にsearch.htmlにリダイレクト
             header('Location: ../search/search.html');
