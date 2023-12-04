@@ -1,30 +1,46 @@
 <!DOCTYPE html>
 <head>
+  <meta charset="utf-8">
+  <title>マイページ</title>
+  <input type="file" class="file-upload" id="file-upload" style="display: none;">
   <link rel="stylesheet" type="text/css" href="mypage.css">
+
   </head>
-<body>
+  <body>
   <div class="login">
     <div class="login-screen">
       <div class="app-title">
-        <h1>マイページ</h1>
-        <h2>アカウント情報</h2>
+        <h1 class="left">マイページ</h1>
+        <h3>アカウント情報</h3>
       </div>
-
       <div class="login-form">
         <div class="control-group">
-        <input type="text" class="login-field" value="" placeholder="username" id="login-name">
+        <input type= "text" class= "login-field" value= "" placeholder= "ユーザー名" id= "login-name" disabled>
         <label class="login-field-icon fui-user" for="login-name"></label>
         </div>
 
         <div class="control-group">
-        <input type="password" class="login-field" value="" placeholder="password" id="login-pass">
+          <input type="email" class="login-field" value="" placeholder="メールアドレス" id="login-email" disabled>
+          <label class="login-field-icon fui-email" for="login-email"></label>
+          </div>
+
+        <div class="control-group">
+        <input type="password" class="login-field" value="" placeholder="パスワード" id="login-pass" disabled>
         <label class="login-field-icon fui-lock" for="login-pass"></label>
         </div>
 
-        <a class="btn btn-primary btn-large btn-block" href="#">login</a>
-        <a class="login-link" href="#">Lost your password?</a>
+        <div class="control-group">
+          <input type="file" class="login-field" value="" placeholder="プロフィール画像" id="fileElem"multiple accept="image/*"style="display:none" disabled>
+          <button id="fileSelect"type="button">ファイルを選択
+          <label class="login-field-icon fui-image" for="login-image"></label>
+          </div>
+
+         <a href=”EditAccountInformation.html” class="aida">編集</a>
+
+        <a href=login.html”>ログアウト</a>
       </div>
     </div>
   </div>
+</div>
 </body>
     
