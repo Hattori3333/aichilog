@@ -8,15 +8,16 @@
     body {
     font-family: Arial;
     background-color: #3498DB;
-    padding: 50px;
+    padding: 80px;
     }
     .login {
-    margin: 20px auto;
-    width: 300px;
+    margin: 10px auto;
+    width: 400px;
+    height: 400px;
     }
     .login-screen {
     background-color: #FFF;
-    padding: 20px;
+    padding: 30px;
     border-radius: 5px
     }
     
@@ -29,7 +30,7 @@
     text-align: center;
     }
     .control-group {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     }
     
     input {
@@ -49,6 +50,14 @@
     box-shadow: none;
     }
     
+    .container{
+      text-align: center;
+    }
+    .text{
+      display:inline-block;
+      margin-right:10px;
+    }
+
     .btn {
       border: 2px solid transparent;
       background: #3498DB;
@@ -76,3 +85,20 @@
       display: block;
       margin-top: 12px;
     }
+   .left{
+    text-align: left;
+    }
+    .aida{
+      margin-right: 60px;
+    }
+
+    
+    .aida:visited {
+      color: purple; /* 訪れた後のリンクの色を変更 */
+    }
+    
+    a:active {
+      color: green; /* クリック時のリンクの色を変更 */
+    }
+   
+    
