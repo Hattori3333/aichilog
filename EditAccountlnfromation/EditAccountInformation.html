@@ -15,7 +15,16 @@
             </ul>
         </nav>
     </header>
+    <?php
+    // PHPでデータベースからユーザー情報を取得
+    session_start();
+    $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+    $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
+    $password = isset($_SESSION['password']) ? $_SESSION['password'] : '';
+    ?>
+    // 他の必要な情報も同様に取得
 
+       
     <?php
     // PHPでデータベースからユーザー情報を取得
     session_start();
@@ -34,6 +43,8 @@
         };
     </script>
     ?>
+
+    
 
     
     <div class="login">
