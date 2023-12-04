@@ -11,7 +11,7 @@
     padding: 50px;
     }
     .login {
-    margin: 20px auto;
+    margin: 120px auto;
     width: 300px;
     }
     .login-screen {
@@ -80,4 +80,46 @@
     .error-message {
       color: red;
       display: none;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  a {
+    text-decoration: none;
+  }
+  
+  /* header */
+  
+  #header {
+    width: 100%;
+    height: 100px;
+    background-color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    position: fixed;
+    top: 0;
+    box-sizing: border-box;
+  }
+  #header .logo a {
+    color: #333;
+    font-size: 30px;
+  }
+  
+  /* nav */
+  
+  #header .nav__list {
+    list-style: none;
+    display: flex;
+  }
+  #header .nav__item a {
+    padding: 10px 15px;
+    color: #333;
+    font-weight: bold;
+  }
+  #header .nav__item a:hover {
+    text-decoration: underline;
   }
