@@ -26,7 +26,7 @@ session_start();
         // ユーザー名が存在する場合、ナビゲーションメニューのテキストを変更
         if (username) {
             document.getElementById("navList").innerHTML = '<li class="nav__item" id="usernameNavItem"><a href="../mypage/EditAccountInformation.html">' + username + '</a></li>' +
-                '<li class="nav__item"><a href="../logout/logout.php">LOGOUT</a></li>';
+                '<li class="nav__item"><a href="../login/logout.php">LOGOUT</a></li>';
         }
     </script>
 </body>

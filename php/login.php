@@ -1,4 +1,5 @@
 <?php
+session_start();
 $dsn = 'mysql:host=aichi-database-1.clra1wx84nvf.ap-south-1.rds.amazonaws.com;dbname=aichi_log_db;charset=UTF8mb4'; 
 $user = 'admin';
 $pass = 'password';
