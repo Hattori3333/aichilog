@@ -1,12 +1,8 @@
-comenttitle{
-margin:10px;
-margin: 50px;
-margin:20px;
+.h2{
+  border-top: 
+  border-right;
 }
-comment{
-  margin: 1em;
-  margin: -3px;
-}
+
 
 body{
   margin:100px;
@@ -15,31 +11,38 @@ body{
 
 .main{
   display:flex;
-  flex-direction: row;
   align-items: center;
 }
 
-/*.btn{    /*ボタン*/
-/*  float: left;
-  display: flex;
+
+.btn-container{
+  display:inline-flex;
+}
+
+.btn{    /*ボタン*/
+ float: left;
   flex-direction: column;
   align-items: left;
   margin-right: 50px;
-}*/
+}
 
-/*.btn {
+.btn {
   margin: 100;
-}*/
+}
+
 
 .rate-form {   /*星の表示 */
     display: flex;
+    text-align: right;
     flex-direction: row-reverse;
     justify-content: flex-end;
   }
-  .rate-form input[type=radio] {
+  .rate-form input[type=radio] { /*ラベルの非表示*/
     display: none;
+
   }
   .rate-form label {
+    display: flex;
     position: relative;
     padding: 0 5px;
     color: #ccc;
@@ -54,7 +57,7 @@ body{
   }
   .rate-form input[type=radio]:checked ~ label {
     color: #ffcc00;
-  } 
+  } /**/
 
   .box1{
     padding: 0.5em 1em;
