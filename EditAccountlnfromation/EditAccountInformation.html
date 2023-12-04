@@ -17,24 +17,25 @@
     </header>
     
     <?php
-        // PHPでデータベースからユーザー情報を取得
-        session_start();
-        $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
-        $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
-        $password = isset($_SESSION['password']) ? $_SESSION['password'] : '';
-        // 他の必要な情報も同様に取得
-
-        // ユーザー情報をJavaScriptに渡す
-        echo '<script>';
-        echo 'var userInfo = {';
-        echo '"username": "' . $username . '",';
-        echo '"password": "' . $password . '",';
-        echo '"email": "' . $email . '"';
-        // 他の必要な情報も同様に追加
-        echo '};';
-        echo '</script>';
+    // PHPでデータベースからユーザー情報を取得
+    session_start();
+    $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+    $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
+    $password = isset($_SESSION['password']) ? $_SESSION['password'] : '';
+    ?>
+    // 他の必要な情報も同様に取得
+    
+    <script>
+        var userInfo = {
+            "username": "<?php echo $username; ?>",
+            "email": "<?php echo $email; ?>",
+            "password": "<?php echo $password; ?>"
+            // 他の必要な情報も同様に追加
+        };
+    </script>
     ?>
 
+    
     <div class="login">
         <div class="login-screen">
             <div class="app-title">
