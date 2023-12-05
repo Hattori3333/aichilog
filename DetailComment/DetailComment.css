@@ -1,0 +1,41 @@
+/* style.css */
+
+/* タイトルのスタイル */
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* 画像と情報のブロック */
+  .main {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  /* 画像のスタイル */
+  .main img {
+    width: 300px;
+    height: 200px;
+    margin-right: 20px;
+  }
+  
+  /* 情報のブロック */
+  .details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* 情報のテーブル */
+  .details table {
+    margin-bottom: 10px;
+  }
+  
+  /* Google Maps のスタイル */
+  .map {
+    width: 400px;
+    height: 300px;
+    border: 0;
+    margin-left: 20px;
+  }
+  
