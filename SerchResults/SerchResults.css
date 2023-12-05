@@ -1,6 +1,6 @@
 .h2{
-  border-top: 
-  border-right;
+  border-top: 100px;
+  border-right: 50;
 }
 
 
@@ -12,6 +12,11 @@ body{
 .main{
   display:flex;
   align-items: center;
+}
+
+.from{
+  display: flex;
+  
 }
 
 
@@ -75,3 +80,15 @@ body{
   .box2{
     border:1px solid #000; border-radius:8px; 
   }
+
+  /*テーブル*/
+  table,
+td {
+  border: 1px solid #333;
+}
+
+thead,
+tfoot {
+  background-color: #333;
+  color: #fff;
+}

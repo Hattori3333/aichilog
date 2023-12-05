@@ -8,9 +8,10 @@
 </head>
 <body>
   <h1  class="title">検索結果・ランキング</h1>
-  <div class="main">
+  <div class="main"></div>
+    
    <button class="btn" onclick="location.href=' DetailComment/DetailComment.html'"></button>
-    <h2>犬山</h2>
+   <h2>犬山</h2>
     <img src="image/inuyama.jpg">
   
     <div class="rate-form"><!--星の表示-->
@@ -29,13 +30,24 @@
     <div>
       <form action = "comenttitle"  method = "post">
         <p>コメントタイトル<br>
-        <input type = "coment" coment="coment" disabled></p>
+        <input type = "coment" coment="coment" /*disabled*/></p>
         <p>コメント<br>
-          <textarea name="comment" cols="30" rows="6" disabled></textarea></p>
+          <textarea name="comment" cols="30" rows="6" /*disabled*/></textarea></p>
       </form>
-        <div class ="box1">test1</div>
-        <div class ="box2">test2</div>
-        </div>
+      <table>
+        <thead>
+          <tr>
+          <th colspan="2">営業時間</th>
+         </tr>
+         </thead>
+         <tbody>
+          <tr>
+            <td>公開</td>
+            <td> 9:00~17:00<br>(16:30)までに入場</td>
+            <td>休業</td>
+            <td> 12月29日~12月31日</td>
+          </tr>
+         </tbody>
   </div>
-</body>
+ </body>
 </html>
