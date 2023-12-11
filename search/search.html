@@ -17,7 +17,28 @@ session_start();
             </ul>
         </nav>
     </header>
-    <h1>www</h1>
+    <h3>www</h3>
+    <div class="search-container1">
+        <select id="keyword1" name="keyword1">
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <!-- 他の選択肢を追加 -->
+        </select>
+    </div> 
+    <div class="search-container2">
+        <select id="keyword2" name="keyword2">
+            <option value="optionA">Option A</option>
+            <option value="optionB">Option B</option>
+            <!-- 他の選択肢を追加 -->
+        </select>
+    </div>
+    
+        <button class="search_btn" onclick="search()">検索</button>
+
+        <div id="search-results">
+            <!-- 検索結果を表示するためのコンテナ -->
+        </div>
+       
 
     <script>
         // セッションからユーザー名を取得
@@ -28,6 +49,53 @@ session_start();
             document.getElementById("navList").innerHTML = '<li class="nav__item" id="usernameNavItem"><a href="../mypage/EditAccountInformation.html">' + username + '</a></li>' +
                 '<li class="nav__item"><a href="../login/logout.php">LOGOUT</a></li>';
         }
+
+
+    var allPages = [
+        { title: "Page 1", keywords: ["option1", "optionA"], link: "page1.html" },
+        { title: "Page 2", keywords: ["option2", "optionB"], link: "page2.html" },
+        // 他のページ情報を追加
+    ];
+
+
+    function search() {
+        // 選択されたキーワードを取得
+        var keyword1 = document.getElementById("keyword1").value;
+        var keyword2 = document.getElementById("keyword2").value;
+
+        // 検索結果を取得
+        var searchResults = filterPages(keyword1, keyword2);
+
+        // 検索結果を表示
+        displaySearchResults(searchResults);
+    }
+
+    function filterPages(keyword1, keyword2) {
+        // 選択されたキーワードに一致するページをフィルタリング
+        return allPages.filter(function (page) {
+            return page.keywords.includes(keyword1) && page.keywords.includes(keyword2);
+        });
+    }
+
+    function displaySearchResults(results) {
+        var resultsContainer = document.getElementById("search-results");
+
+        // 結果をクリア
+        resultsContainer.innerHTML = "";
+
+        // 結果を表示
+        results.forEach(function (result) {
+            var resultLink = document.createElement("a");
+            resultLink.href = result.link;
+            resultLink.textContent = result.title;
+
+            var resultItem = document.createElement("div");
+            resultItem.appendChild(resultLink);
+
+            resultsContainer.appendChild(resultItem);
+        });
+    }
+
     </script>
 </body>
 </html>
