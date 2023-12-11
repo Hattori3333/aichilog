@@ -1,20 +1,25 @@
+
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>検索結果・ランキング</title>
-  <link rel="stylesheet" href="SerchResults.css">
-  <script type="text/javascript" src="SerchResults.js"></script>
-</head>
+
+    <head>
+      <meta charset="UTF-8">
+        <title>検索結果・ランキング</title>
+         <link rel="stylesheet" href="SerchResults.css">
+      <script type="text/javascript" src="SerchResults.js"></script>
+    </head>
+
 <body>
-  <h1  class="title">検索結果・ランキング</h1>
-  <div class="main"></div>
-    
-   <button class="btn" onclick="location.href=' DetailComment/DetailComment.html'"></button>
-   <h2>犬山</h2>
-    <img src="image/inuyama.jpg">
+
+    <div class="content-box">
+      <h1  class="title">検索結果・ランキング</h1> 
+      <div class ="content-box2">
+      <div class="Serch"> 
+        <a href="DeatalComment/DeatalComment.html">
+     <h2>犬山</h2>
+          <img src="image/inuyama.jpg">
   
-    <div class="rate-form"><!--星の表示-->
+     <div class="rate-form" ><!--星の表示-->
       <input id="star5" type="radio" name="rate" value="5">
       <label for="star5">★</label>
       <input id="star4" type="radio" name="rate" value="4">
@@ -25,20 +30,22 @@
       <label for="star2">★</label>
       <input id="star1" type="radio" name="rate" value="1">
       <label for="star1">★</label>
-    </div>
+    
    
-    <div>
+     <div class="coment">
       <form action = "comenttitle"  method = "post">
         <p>コメントタイトル<br>
-        <input type = "coment" coment="coment" /*disabled*/></p>
+        <input type = "coment" coment="coment" disabled></p>
         <p>コメント<br>
-          <textarea name="comment" cols="30" rows="6" /*disabled*/></textarea></p>
+        <textarea name="comment" cols="30" rows="6" disabled></textarea></p>
       </form>
+     </div>
+     </div>
       <table>
         <thead>
           <tr>
           <th colspan="2">営業時間</th>
-         </tr>
+           </tr>
          </thead>
          <tbody>
           <tr>
@@ -48,6 +55,10 @@
             <td> 12月29日~12月31日</td>
           </tr>
          </tbody>
+      </table>
+        </a>
+      </div>
   </div>
- </body>
+</div>
+  </body>
 </html>

@@ -1,0 +1,66 @@
+.h2{
+    border-top: 
+    border-right;
+  }
+  body{
+    margin:100px;
+    background-color: aqua;
+  }
+  .main{
+    display:flex;
+    align-items: center;
+  }
+  .btn-container{
+    display:inline-flex;
+  }
+  .btn{    /*ボタン*/
+   float: left;
+    flex-direction: column;
+    align-items: left;
+    margin-right: 50px;
+  }
+  .btn {
+    margin: 100;
+  }
+  .rate-form {   /*星の表示 */
+      display: flex;
+      text-align: right;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+    .rate-form input[type=radio] { /*ラベルの非表示*/
+      display: none;
+    }
+    .rate-form label {
+      display: flex;
+      position: relative;
+      padding: 0 5px;
+      color: #ccc;
+      cursor: pointer;
+      font-size: 35px;
+    }
+    .rate-form label:hover {
+      color: #ffcc00;
+    }
+    .rate-form label:hover ~ label {
+      color: #ffcc00;
+    }
+    .rate-form input[type=radio]:checked ~ label {
+      color: #ffcc00;
+    } /**/
+    .box1{
+      padding: 0.5em 1em;
+      margin: 2em 0;
+      color:darkgray;
+      background:azure;
+      border-bottom: solid 6px whitesmoke;
+      border-radius: 9px;
+    }
+    .box1{
+      
+      margin:50;
+      padding: 50;
+    }
+    .box2{
+      border:1px solid #000; border-radius:8px; 
+    }
