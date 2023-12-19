@@ -7,6 +7,32 @@ session_start();
 <title>AICHI-LOG</title>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="search.css">
+<style>
+  /* 追加したスタイル */
+  .result-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ddd; /* カードのボーダー */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* カードに影を追加 */
+    background-color: #fff;
+  }
+
+  .photo-container {
+    margin-bottom: 10px;
+  }
+
+  .rating-container {
+    margin-bottom: 10px;
+  }
+
+  .hours-container {
+    font-weight: bold;
+  }
+</style>
 </head>
 <body>
     <header id="header">
@@ -17,7 +43,6 @@ session_start();
             </ul>
         </nav>
     </header>
-    <h3>www</h3>
     <div class="search-container1">
         <select id="keyword1" name="keyword1">
             <option value="option1">Option 1</option>
@@ -50,13 +75,12 @@ session_start();
                 '<li class="nav__item"><a href="../login/logout.php">LOGOUT</a></li>';
         }
 
-
     var allPages = [
-        { title: "Page 1", keywords: ["option1", "optionA"], link: "page1.html" },
-        { title: "Page 2", keywords: ["option2", "optionB"], link: "page2.html" },
+        { title: "犬山城", keywords: ["option1", "optionA"], link: "page1.html", rating: 4, photo: "inuyama.jpg", hours: "9:00 - 18:00" },
+        { title: "犬山城", keywords: ["option1", "optionA"], link: "page1.html", rating: 4, photo: "inuyama.jpg", hours: "9:00 - 18:00" },
+        { title: "Page 2", keywords: ["option2", "optionB"], link: "page2.html", rating: 5, photo: "search\images\inuyama.jpg", hours: "10:00 - 20:00" },
         // 他のページ情報を追加
     ];
-
 
     function search() {
         // 選択されたキーワードを取得
@@ -85,17 +109,46 @@ session_start();
 
         // 結果を表示
         results.forEach(function (result) {
+            // カードデザインのコンテナ
+            var resultCard = document.createElement("div");
+            resultCard.className = "result-card";
+
             var resultLink = document.createElement("a");
             resultLink.href = result.link;
             resultLink.textContent = result.title;
 
-            var resultItem = document.createElement("div");
-            resultItem.appendChild(resultLink);
+            // 写真を表示
+            var photoContainer = document.createElement("div");
+            photoContainer.className = "photo-container";
+            var photo = document.createElement("img");
+            photo.src = result.photo;
+            photo.alt = "Photo";
+            photoContainer.appendChild(photo);
 
-            resultsContainer.appendChild(resultItem);
+            // 星の評価を表示
+            var ratingContainer = document.createElement("div");
+            ratingContainer.className = "rating-container";
+            for (var i = 1; i <= 5; i++) {
+                var star = document.createElement("span");
+                star.className = i <= result.rating ? "star filled" : "star";
+                star.innerHTML = "&#9733;"; // 星の文字実体参照
+                ratingContainer.appendChild(star);
+            }
+
+            // 営業時間を表示
+            var hoursContainer = document.createElement("div");
+            hoursContainer.className = "hours-container";
+            hoursContainer.textContent = "営業時間: " + result.hours;
+
+            // カードに要素を追加
+            resultCard.appendChild(resultLink);
+            resultCard.appendChild(photoContainer);
+            resultCard.appendChild(ratingContainer);
+            resultCard.appendChild(hoursContainer);
+
+            resultsContainer.appendChild(resultCard);
         });
     }
-
     </script>
 </body>
 </html>
