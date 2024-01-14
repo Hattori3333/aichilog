@@ -1,41 +1,174 @@
 body {
-    margin: 0;
-    padding: 0;
-  }
-  a {
-    text-decoration: none;
-  }
-  
-  /* header */
-  
-  #header {
-    width: 100%;
-    height: 100px;
-    background-color: #eee;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 30px;
-    position: fixed;
-    top: 0;
-    box-sizing: border-box;
-  }
-  #header .logo a {
-    color: #333;
-    font-size: 30px;
-  }
-  
-  /* nav */
-  
-  #header .nav__list {
-    list-style: none;
-    display: flex;
-  }
-  #header .nav__item a {
-    padding: 10px 15px;
-    color: #333;
-    font-weight: bold;
-  }
-  #header .nav__item a:hover {
-    text-decoration: underline;
-  }
+  margin: 0;
+  padding: 0;
+  padding-top: 120px; /* ヘッダーの高さ分の余白を調整 */
+}
+
+a {
+  text-decoration: none;
+}
+
+/* header */
+
+#header {
+  width: 100%;
+  height: 100px;
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  position: fixed;
+  top: 0;
+  box-sizing: border-box;
+}
+
+#header .logo a {
+  color: #333;
+  font-size: 30px;
+}
+
+/* nav */
+
+#header .nav__list {
+  list-style: none;
+  display: flex;
+}
+
+#header .nav__item a {
+  padding: 10px 15px;
+  color: #333;
+  font-weight: bold;
+}
+
+#header .nav__item a:hover {
+  text-decoration: underline;
+}
+
+form {
+  margin-top: 20px;
+}
+
+/* セレクトボックス */
+.search-container1,
+.search-container2 {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  margin-right: 20px; /* セレクトボックス間の間隔調整 */
+}
+
+.search-container1::after,
+.search-container2::after {
+  position: absolute;
+  right: 15px;
+  width: 10px;
+  height: 7px;
+  background-color: #535353;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  content: '';
+  pointer-events: none;
+}
+
+.search-container1 select,
+.search-container2 select {
+  appearance: none;
+  min-width: 230px;
+  height: 2.8em;
+  padding: .4em calc(.8em + 30px) .4em .8em;
+  border: 1px solid #cccccc;
+  border-radius: 25px;
+  background-color: #fff;
+  color: #333333;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+/* 検索ボタン */
+.search_btn {
+  justify-content: center;
+  min-width: 100px; /* ボタンの幅調整 */
+  margin: 0 auto;
+  padding: .7em 2em;
+  border: none;
+  border-radius: 25px;
+  background-color: #4f4f4f;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s; /* ホバーエフェクトの追加 */
+}
+
+.search_btn:hover {
+  background-color: #3f3f3f;
+}
+
+/* 評価表示のスタイル */
+.rating-container {
+  display: flex;
+  margin-top: 10px; /* 評価と写真の間隔調整 */
+  /* padding-left: 20px;左の余白を追加 */
+}
+
+.star {
+  font-size: 20px;
+  color: #ddd;
+  cursor: pointer;
+  margin-right: 5px; /* 星単位の間隔調整 */
+  /* padding-left: 20px;左の余白を追加 */
+}
+
+.star.filled {
+  color: gold;
+}
+
+
+
+#search-results a {
+  font-size: 24px; /* フォントサイズを変更 */
+  font-weight: bold; /* 必要に応じて太字にする */
+  color: #333; /* タイトルの色を変更 */
+  text-decoration: none; /* 下線を除去 */
+}
+
+#search-results a:hover {
+  text-decoration: underline; /* ホバー時に下線を表示 */
+}
+
+
+#search-results {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+}
+
+.result-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ddd; /* カードのボーダー */
+  border-radius: 10px;
+  padding: 10px; /* カードのパディング */
+  margin: 10px;
+  max-width: 200px; /* カードの最大幅 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* カードに影を追加 */
+  background-color: #fff;
+}
+
+.photo-container {
+  margin-bottom: 10px;
+}
+
+.photo-container img {
+  max-width: 100%; /* 写真の最大幅を100%に設定 */
+  border-radius: 8px; /* 写真に角丸を追加 */
+}
+
+.rating-container {
+  margin-bottom: 5px;
+}
+
+.hours-container {
+  font-weight: bold;
+}

@@ -7,6 +7,32 @@ session_start();
 <title>AICHI-LOG</title>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="search.css">
+<style>
+  /* 追加したスタイル */
+  .result-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ddd; /* カードのボーダー */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* カードに影を追加 */
+    background-color: #fff;
+  }
+
+  .photo-container {
+    margin-bottom: 10px;
+  }
+
+  .rating-container {
+    margin-bottom: 10px;
+  }
+
+  .hours-container {
+    font-weight: bold;
+  }
+</style>
 </head>
 <body>
     <header id="header">
@@ -17,7 +43,27 @@ session_start();
             </ul>
         </nav>
     </header>
-    <h1>www</h1>
+    <div class="search-container1">
+        <select id="keyword1" name="keyword1">
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <!-- 他の選択肢を追加 -->
+        </select>
+    </div> 
+    <div class="search-container2">
+        <select id="keyword2" name="keyword2">
+            <option value="optionA">Option A</option>
+            <option value="optionB">Option B</option>
+            <!-- 他の選択肢を追加 -->
+        </select>
+    </div>
+    
+        <button class="search_btn" onclick="search()">検索</button>
+
+        <div id="search-results">
+            <!-- 検索結果を表示するためのコンテナ -->
+        </div>
+       
 
     <script>
         // セッションからユーザー名を取得
@@ -28,6 +74,81 @@ session_start();
             document.getElementById("navList").innerHTML = '<li class="nav__item" id="usernameNavItem"><a href="../mypage/EditAccountInformation.html">' + username + '</a></li>' +
                 '<li class="nav__item"><a href="../login/logout.php">LOGOUT</a></li>';
         }
+
+    var allPages = [
+        { title: "犬山城", keywords: ["option1", "optionA"], link: "page1.html", rating: 4, photo: "inuyama.jpg", hours: "9:00 - 18:00" },
+        { title: "犬山城", keywords: ["option1", "optionA"], link: "page1.html", rating: 4, photo: "inuyama.jpg", hours: "9:00 - 18:00" },
+        { title: "Page 2", keywords: ["option2", "optionB"], link: "page2.html", rating: 5, photo: "search\images\inuyama.jpg", hours: "10:00 - 20:00" },
+        // 他のページ情報を追加
+    ];
+
+    function search() {
+        // 選択されたキーワードを取得
+        var keyword1 = document.getElementById("keyword1").value;
+        var keyword2 = document.getElementById("keyword2").value;
+
+        // 検索結果を取得
+        var searchResults = filterPages(keyword1, keyword2);
+
+        // 検索結果を表示
+        displaySearchResults(searchResults);
+    }
+
+    function filterPages(keyword1, keyword2) {
+        // 選択されたキーワードに一致するページをフィルタリング
+        return allPages.filter(function (page) {
+            return page.keywords.includes(keyword1) && page.keywords.includes(keyword2);
+        });
+    }
+
+    function displaySearchResults(results) {
+        var resultsContainer = document.getElementById("search-results");
+
+        // 結果をクリア
+        resultsContainer.innerHTML = "";
+
+        // 結果を表示
+        results.forEach(function (result) {
+            // カードデザインのコンテナ
+            var resultCard = document.createElement("div");
+            resultCard.className = "result-card";
+
+            var resultLink = document.createElement("a");
+            resultLink.href = result.link;
+            resultLink.textContent = result.title;
+
+            // 写真を表示
+            var photoContainer = document.createElement("div");
+            photoContainer.className = "photo-container";
+            var photo = document.createElement("img");
+            photo.src = result.photo;
+            photo.alt = "Photo";
+            photoContainer.appendChild(photo);
+
+            // 星の評価を表示
+            var ratingContainer = document.createElement("div");
+            ratingContainer.className = "rating-container";
+            for (var i = 1; i <= 5; i++) {
+                var star = document.createElement("span");
+                star.className = i <= result.rating ? "star filled" : "star";
+                star.innerHTML = "&#9733;"; // 星の文字実体参照
+                ratingContainer.appendChild(star);
+            }
+
+            // 営業時間を表示
+            var hoursContainer = document.createElement("div");
+            hoursContainer.className = "hours-container";
+            hoursContainer.textContent = "営業時間: " + result.hours;
+
+            // カードに要素を追加
+            resultCard.appendChild(resultLink);
+            resultCard.appendChild(photoContainer);
+            resultCard.appendChild(ratingContainer);
+            resultCard.appendChild(hoursContainer);
+
+            resultsContainer.appendChild(resultCard);
+        });
+    }
     </script>
 </body>
 </html>
