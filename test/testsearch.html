@@ -166,6 +166,63 @@ form {
             text-align: left;
         }
     </style>
+
+    <script>
+        function search() {
+    var regionSelect = document.getElementById('region-select');
+    var genreSelect = document.getElementById('genre-select');
+
+    // 選択された値を取得
+    var region = regionSelect.value;
+    var genre = genreSelect.value;
+
+    // XMLHttpRequestを作成
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // データを受け取る処理
+            var responseData = JSON.parse(xhr.responseText);
+            console.log(responseData); // データをコンソールで表示
+
+            // 結果を表示
+            displayResults(responseData);
+        }
+    };
+
+    // フォームデータを作成
+    var formData = new FormData();
+    formData.append('region', region);
+    formData.append('genre', genre);
+
+    // リクエストを開始
+    xhr.open('POST', 'testsearch.php', true);
+    xhr.send(formData);
+}
+
+function displayResults(results) {
+    const resultsContainer = document.getElementById('results');
+    resultsContainer.innerHTML = ''; // 現在の結果をクリア
+
+    // 結果を表示
+    results.forEach(result => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <img src="images/${result.spot_name.toLowerCase()}.jpg" alt="${result.spot_name}">
+            <div class="card-content">
+                <h3>${result.spot_name}</h3>
+                <p>${result.spot_hour}</p>
+            </div>
+        `;
+        card.onclick = function () {
+            showDetails(result.spot_name, `images/${result.spot_name.toLowerCase()}.jpg`);
+        };
+        resultsContainer.appendChild(card);
+    });
+}
+
+    </script>
+
 </head>
 
 <body>
@@ -187,15 +244,16 @@ form {
         </div>
 
         <div id="search-bar">
-            <select id="city-select">
-                <option value="nagoya">名古屋</option>
-                <option value="toyota">豊田</option>
+            <select id="region-select">
+                <option value="nagoya">名古屋市</option>
+                <option value="犬山市">犬山市</option>
                 <!-- 他の市のオプションを追加 -->
             </select>
 
-            <select id="category-select">
+            <select id="genre-select">
                 <option value="food">食べ物</option>
                 <option value="amusement">遊園地</option>
+                <option value="城">城</option>
                 <!-- 他のジャンルのオプションを追加 -->
             </select>
 
@@ -204,49 +262,30 @@ form {
     </div>
 
     <div id="results">
-        <!-- 以下、検索結果の表示に関するコード -->
-        <!-- 仮のデータに基づいて結果を表示 -->
-        <div class="card" onclick="showDetails('観光地1', 'image/inuyama_machi.jpg')">
-            <!-- ここでカードの画像を指定 -->
-            <img src="images/inuyama_siro.jpg" alt="観光地1">
-            <div class="card-content">
-                <h3>観光地1</h3>
-                <p>説明文や詳細情報など</p>
-            </div>
-        </div>
-
-        <div class="card" onclick="showDetails('観光地2', 'images/place2.jpg')">
-            <!-- ここでカードの画像を指定 -->
-            <img src="images/inuyama_siro.jpg" alt="観光地2">
-            <div class="card-content">
-                <h3>観光地2</h3>
-                <p>説明文や詳細情報など</p>
-            </div>
-        </div>
-        <!-- 他の検索結果カードを追加 -->
+        <?php
+        // データベースから取得した結果を元にカードを生成
+        if (isset($results)) {
+            foreach ($results as $result) {
+                echo '<div class="card">';
+                echo '<img src="images/' . strtolower($result['spot_name']) . '.jpg" alt="' . $result['spot_name'] . '">';
+                echo '<div class="card-content">';
+                echo '<h3>' . $result['spot_name'] . '</h3>';
+                echo '<p>' . $result['spot_hour'] . '</p>';
+                echo '</div>';
+                echo '</div>';
+            }
+        }
+        ?>
     </div>
 
-    <div id="detail-page" class="detail-container" style="display:none;">
-        <h2 id="detail-title">観光地名</h2>
-        <!-- ここで詳細ページの画像を指定 -->
-        <img id="detail-image" class="detail-image" src="images/default-image.jpg" alt="観光地の写真">
-        <div class="rating">
-            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-        </div>
-        <div id="detail-info" class="detail-info">
-            <p>営業時間: 10:00 - 18:00</p>
-            <p>その他詳細情報など</p>
-        </div>
-    </div>
-
-    <script>
+    <!-- <script>
         
 
         
         // 仮のデータ（実際のデータに置き換えてください）
         const attractionsData = [
-            { name: '観光地1', city: 'nagoya', category: 'food' },
-            { name: '観光地2', city: 'toyota', category: 'amusement' },
+            { name: '観光地1', region: 'nagoya', genre: 'food' },
+            { name: '観光地2', region: 'toyota', genre: 'amusement' },
             // 他のデータを追加
         ];
 
@@ -255,13 +294,13 @@ form {
 
         function search() {
             // プルダウンで選択された条件を取得
-            const selectedCity = document.getElementById('city-select').value;
-            const selectedCategory = document.getElementById('category-select').value;
+            const selectedRegion = document.getElementById('region-select').value;
+            const selectedGenre = document.getElementById('genre-select').value;
 
             // フィルタリングされた結果を取得
             const filteredResults = attractionsData.filter(attraction => {
-                return (selectedCity === 'all' || attraction.city === selectedCity) &&
-                       (selectedCategory === 'all' || attraction.category === selectedCategory);
+                return (selectedRegion === 'all' || attraction.region === selectedRegion) &&
+                    (selectedGenre === 'all' || attraction.genre === selectedGenre);
             });
 
             // 結果を表示
@@ -290,15 +329,7 @@ form {
             });
         }
 
-        function showDetails(placeName, imagePath) {
-            // 詳細ページの表示
-            document.getElementById('detail-title').innerText = placeName;
-            document.getElementById('detail-image').src = imagePath;
-            document.getElementById('detail-page').style.display = 'block';
-
-            // 他の詳細情報をここにセット
-        }
-    </script>
+    </script> -->
 </body>
 
 </html>
