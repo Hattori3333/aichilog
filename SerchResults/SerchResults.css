@@ -1,94 +1,86 @@
-.h2{
-  border-top: 100px;
-  border-right: 50;
+a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  margin: 0 30px;
 }
 
-
-body{
-  margin:100px;
-  background-color: aqua;
+a:hover {
+  background-color: #f0f0f0; /* ホバー時の背景色 */
 }
-
-.main{
-  display:flex;
-  align-items: center;
-}
-
-.from{
-  display: flex;
-  
-}
-
-
-.btn-container{
-  display:inline-flex;
-}
-
-.btn{    /*ボタン*/
- float: left;
-  flex-direction: column;
-  align-items: left;
-  margin-right: 50px;
-}
-
-.btn {
-  margin: 100;
-}
-
-
-.rate-form {   /*星の表示 */
-    display: flex;
-    text-align: right;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-  }
-  .rate-form input[type=radio] { /*ラベルの非表示*/
-    display: none;
-
-  }
-  .rate-form label {
-    display: flex;
-    position: relative;
-    padding: 0 5px;
-    color: #ccc;
-    cursor: pointer;
-    font-size: 35px;
-  }
-  .rate-form label:hover {
-    color: #ffcc00;
-  }
-  .rate-form label:hover ~ label {
-    color: #ffcc00;
-  }
-  .rate-form input[type=radio]:checked ~ label {
-    color: #ffcc00;
-  } /**/
-
-  .box1{
-    padding: 0.5em 1em;
-    margin: 2em 0;
-    color:darkgray;
-    background:azure;
-    border-bottom: solid 6px whitesmoke;
-    border-radius: 9px;
-  }
-  .box1{
     
-    margin:50;
-    padding: 50;
-  }
-  .box2{
-    border:1px solid #000; border-radius:8px; 
-  }
-
-  /*テーブル*/
-  table,
-td {
-  border: 1px solid #333;
+body {
+  margin: 20px; /* 左右に20pxの余白を追加 */
+  padding: 0;   /* ページ全体の内側の余白をリセット */
+  box-sizing: border-box; /* ボックスモデルをborder-boxに設定して、borderとpaddingが幅に含まれるようにする */
 }
 
-thead,
-tfoot {
-  background-color: #333;
-  color: #fff;
-}
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      margin: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #3498db;
+      color: #fff;
+    }
+
+    td {
+      background-color: #ecf0f1;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .rate-form {
+      display: flex;
+      align-items: center;
+    }
+
+    .rate-form {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+    .rate-form input[type=radio] {
+      display: none;
+    }
+    .rate-form label {
+      position: relative;
+      padding: 0 5px;
+      color: #ccc;
+      cursor: pointer;
+      font-size: 35px;
+    }
+    .rate-form label:hover {
+      color: #ffcc00;
+    }
+    .rate-form label:hover ~ label {
+      color: #ffcc00;
+    }
+    .rate-form input[type=radio]:checked ~ label {
+      color: #ffcc00;
+    }
+
+    .comments {
+      margin-top: 10px;
+      line-height: 3;
+    }
+
+    p {
+      margin: 0;
+      line-height: 3;
+    }
