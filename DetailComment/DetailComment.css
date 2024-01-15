@@ -1,56 +1,202 @@
-/* style.css */
+* {
+  box-sizing: border-box;
+  outline: none;
+}
 
-/* タイトルのスタイル */
-.title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
+body {
+  font-family: Arial;
+  background-color: #3498DB;
+  padding: 150px 50px 50px;
+  margin: 0;
+}
+
+
+.main {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
 }
 
 /* 画像と情報のブロック */
 .main {
   display: flex;
   align-items: flex-start;
+  justify-content: flex-start; /* 文章を画像の右横に配置 */
 }
 
 /* 画像のスタイル */
 .main img {
-  width: 300px;
-  height: 200px;
+  width: 25%; /* 画像を親要素の幅に合わせる */
+  height: auto; /* アスペクト比を維持 */
   margin-right: 20px;
+  border: 20px solid #ccc; /* 灰色のフレーム */
+  border-radius: 10px; /* 枠の角を丸くする */
 }
 
 /* 情報のブロック */
 .details {
   display: flex;
   flex-direction: column;
+  width: 100%; /* 幅を100%に設定 */
 }
 
-/* 情報のテーブル */
-.details table {
-  margin-bottom: 20px;
+
+/* 説明文のスタイル */
+.description {
+  margin-top: 20px; /* 適切なマージンを追加 */
+}
+
+
+/* 説明文の段落のスタイル */
+.description p {
+  margin-bottom: 10px;
+}
+
+
+
+.details {
+  text-align: center;
+}
+
+.kaisha {
   width: 100%;
+  margin-top: 20px;
   border-collapse: collapse;
 }
 
-/* テーブルのヘッダーのスタイル */
-.details th {
-  font-weight: bold;
-  background-color: #dedede;
-  border: 1px solid #ccc;
+.kaisha th, .kaisha td {
   padding: 10px;
-  text-align: left;
+  border: 1px solid #3498DB;
 }
 
-/* テーブルのデータセルのスタイル */
-.details td {
-  border: 1px solid #ccc;
-  padding: 10px;
-}
-
-/* Google Maps のスタイル */
 .map {
-  width: 400px;
+  width: 30%;
   height: 300px;
-  border: 1px solid #ccc;
+  margin-top: 20px;
+  border: none;
+}
+
+.description {
+  color: #777;
+  margin-top: 20px;
+}
+
+.footer {
+  text-align: center;
+  color: #FFF;
+  margin-top: 20px;
+}
+
+/* Add your custom styles here */
+
+.login {
+  margin: 120px auto;
+  width: 300px;
+}
+
+.login-screen {
+  background-color: #FFF;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.app-title {
+  text-align: center;
+  color: #777;
+}
+
+.login-form {
+  text-align: center;
+}
+
+.control-group {
+  margin-bottom: 10px;
+}
+
+input {
+  text-align: center;
+  background-color: #ECF0F1;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 200;
+  padding: 10px 0;
+  width: 250px;
+  transition: border .5s;
+}
+
+input:focus {
+  border: 2px solid #3498DB;
+  box-shadow: none;
+}
+
+.btn {
+  border: 2px solid transparent;
+  background: #3498DB;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 25px;
+  padding: 10px 0;
+  text-decoration: none;
+  text-shadow: none;
+  border-radius: 3px;
+  box-shadow: none;
+  transition: 0.25s;
+  display: block;
+  width: 250px;
+  margin: 0 auto;
+}
+
+.btn:hover {
+  background-color: #FFFAF0;
+}
+
+.login-link {
+  font-size: 12px;
+  color: #444;
+  display: block;
+  margin-top: 12px;
+}
+
+.error-message {
+  color: red;
+  display: none;
+}
+
+/* Header Styles */
+
+#header {
+  width: 100%;
+  height: 100px;
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  position: fixed;
+  top: 0;
+  box-sizing: border-box;
+}
+
+#header .logo a {
+  color: #333;
+  font-size: 30px;
+}
+
+/* Navigation Styles */
+
+#header .nav__list {
+  list-style: none;
+  display: flex;
+}
+
+#header .nav__item a {
+  padding: 10px 15px;
+  color: #333;
+  font-weight: bold;
+}
+
+#header .nav__item a:hover {
+  text-decoration: underline;
 }
