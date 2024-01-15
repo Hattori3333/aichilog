@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -12,30 +15,48 @@
             font-family: 'Arial', sans-serif;
             background-color: #111;
             color: #fff;
+            padding-top: 100px; /* ヘッダーの高さ分の余白を調整 */
         }
+        
 
-        header {
-            background-color: #222;
-            color: #fff;
-            padding: 15px;
-            text-align: center;
-        }
+        #header {
+  width: 100%;
+  height: 100px;
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  position: fixed;
+  top: 0;
+  box-sizing: border-box;
+}
 
-        #logo {
-            font-size: 24px;
-            font-weight: bold;
-            text-decoration: none;
-            color: #fff;
-        }
+        #header .logo a {
+  color: #333;
+  font-size: 30px;
+}
 
-        #login-btn {
-            background-color: #4CAF50;
-            color: #fff;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+/* nav */
+
+#header .nav__list {
+  list-style: none;
+  display: flex;
+}
+
+#header .nav__item a {
+  padding: 10px 15px;
+  color: #333;
+  font-weight: bold;
+}
+
+#header .nav__item a:hover {
+  text-decoration: underline;
+}
+
+form {
+  margin-top: 20px;
+}
 
         #hero {
             position: relative;
@@ -149,14 +170,18 @@
 
 <body>
 
-    <header>
-        <a id="logo" href="#">愛知観光</a>
-        <button id="login-btn">ログイン</button>
+    <header id="header">
+        <h1 class="logo"><a href="#">AICHI-LOG</a></h1>
+        <nav>
+            <ul class="nav__list" id="navList">
+                <li class="nav__item" id="loginNavItem"><a href="../login/login.html">LOGIN</a></li>
+            </ul>
+        </nav>
     </header>
 
     <div id="hero">
         <!-- ここに動画や画像の要素を追加 -->
-        <img id="hero-image" src="image/inuyama_machi.jpg" alt="Hero Image">
+        <img id="hero-image" src="images/inuyama_machi.jpg" alt="Hero Image">
         <div id="hero-content">
             <h1>愛知の魅力を発見しよう</h1>
         </div>
@@ -183,7 +208,7 @@
         <!-- 仮のデータに基づいて結果を表示 -->
         <div class="card" onclick="showDetails('観光地1', 'image/inuyama_machi.jpg')">
             <!-- ここでカードの画像を指定 -->
-            <img src="image/inuyama_machi.jpg" alt="観光地1">
+            <img src="images/inuyama_siro.jpg" alt="観光地1">
             <div class="card-content">
                 <h3>観光地1</h3>
                 <p>説明文や詳細情報など</p>
@@ -192,7 +217,7 @@
 
         <div class="card" onclick="showDetails('観光地2', 'images/place2.jpg')">
             <!-- ここでカードの画像を指定 -->
-            <img src="images/place2.jpg" alt="観光地2">
+            <img src="images/inuyama_siro.jpg" alt="観光地2">
             <div class="card-content">
                 <h3>観光地2</h3>
                 <p>説明文や詳細情報など</p>
@@ -215,6 +240,9 @@
     </div>
 
     <script>
+        
+
+        
         // 仮のデータ（実際のデータに置き換えてください）
         const attractionsData = [
             { name: '観光地1', city: 'nagoya', category: 'food' },
