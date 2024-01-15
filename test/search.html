@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>愛知県観光ガイド</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #111;
+            color: #fff;
+        }
+
+        header {
+            background-color: #222;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        #logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        #login-btn {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #hero {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+        }
+
+        #hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        #hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+        }
+
+        #search-bar {
+            text-align: center;
+            padding: 20px;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #search-bar select {
+            padding: 8px;
+            background-color: #222;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        #search-btn {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #results {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .card {
+            width: 300px;
+            margin: 20px;
+            border: 1px solid #444;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #222;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 16px;
+        }
+
+        /* 新しいスタイルを追加 */
+        .detail-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .detail-image {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px 0;
+        }
+
+        .rating {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #FFD700;
+        }
+
+        .rating span {
+            margin-right: 5px;
+        }
+
+        .detail-info {
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a id="logo" href="#">愛知観光</a>
+        <button id="login-btn">ログイン</button>
+    </header>
+
+    <div id="hero">
+        <!-- ここに動画や画像の要素を追加 -->
+        <img id="hero-image" src="image/inuyama_machi.jpg" alt="Hero Image">
+        <div id="hero-content">
+            <h1>愛知の魅力を発見しよう</h1>
+        </div>
+
+        <div id="search-bar">
+            <select id="city-select">
+                <option value="nagoya">名古屋</option>
+                <option value="toyota">豊田</option>
+                <!-- 他の市のオプションを追加 -->
+            </select>
+
+            <select id="category-select">
+                <option value="food">食べ物</option>
+                <option value="amusement">遊園地</option>
+                <!-- 他のジャンルのオプションを追加 -->
+            </select>
+
+            <button id="search-btn" onclick="search()">検索</button>
+        </div>
+    </div>
+
+    <div id="results">
+        <!-- 以下、検索結果の表示に関するコード -->
+        <!-- 仮のデータに基づいて結果を表示 -->
+        <div class="card" onclick="showDetails('観光地1', 'image/inuyama_machi.jpg')">
+            <!-- ここでカードの画像を指定 -->
+            <img src="image/inuyama_machi.jpg" alt="観光地1">
+            <div class="card-content">
+                <h3>観光地1</h3>
+                <p>説明文や詳細情報など</p>
+            </div>
+        </div>
+
+        <div class="card" onclick="showDetails('観光地2', 'images/place2.jpg')">
+            <!-- ここでカードの画像を指定 -->
+            <img src="images/place2.jpg" alt="観光地2">
+            <div class="card-content">
+                <h3>観光地2</h3>
+                <p>説明文や詳細情報など</p>
+            </div>
+        </div>
+        <!-- 他の検索結果カードを追加 -->
+    </div>
+
+    <div id="detail-page" class="detail-container" style="display:none;">
+        <h2 id="detail-title">観光地名</h2>
+        <!-- ここで詳細ページの画像を指定 -->
+        <img id="detail-image" class="detail-image" src="images/default-image.jpg" alt="観光地の写真">
+        <div class="rating">
+            <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+        </div>
+        <div id="detail-info" class="detail-info">
+            <p>営業時間: 10:00 - 18:00</p>
+            <p>その他詳細情報など</p>
+        </div>
+    </div>
+
+    <script>
+        // 仮のデータ（実際のデータに置き換えてください）
+        const attractionsData = [
+            { name: '観光地1', city: 'nagoya', category: 'food' },
+            { name: '観光地2', city: 'toyota', category: 'amusement' },
+            // 他のデータを追加
+        ];
+
+        // 初期表示
+        displayResults(attractionsData);
+
+        function search() {
+            // プルダウンで選択された条件を取得
+            const selectedCity = document.getElementById('city-select').value;
+            const selectedCategory = document.getElementById('category-select').value;
+
+            // フィルタリングされた結果を取得
+            const filteredResults = attractionsData.filter(attraction => {
+                return (selectedCity === 'all' || attraction.city === selectedCity) &&
+                       (selectedCategory === 'all' || attraction.category === selectedCategory);
+            });
+
+            // 結果を表示
+            displayResults(filteredResults);
+        }
+
+        function displayResults(results) {
+            const resultsContainer = document.getElementById('results');
+            resultsContainer.innerHTML = ''; // 現在の結果をクリア
+
+            // 結果を表示
+            results.forEach(result => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <img src="images/${result.name.toLowerCase()}.jpg" alt="${result.name}">
+                    <div class="card-content">
+                        <h3>${result.name}</h3>
+                        <p>説明文や詳細情報など</p>
+                    </div>
+                `;
+                card.onclick = function () {
+                    showDetails(result.name, `images/${result.name.toLowerCase()}.jpg`);
+                };
+                resultsContainer.appendChild(card);
+            });
+        }
+
+        function showDetails(placeName, imagePath) {
+            // 詳細ページの表示
+            document.getElementById('detail-title').innerText = placeName;
+            document.getElementById('detail-image').src = imagePath;
+            document.getElementById('detail-page').style.display = 'block';
+
+            // 他の詳細情報をここにセット
+        }
+    </script>
+</body>
+
+</html>
