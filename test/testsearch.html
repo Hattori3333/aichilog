@@ -21,7 +21,7 @@ session_start();
         #header {
   width: 100%;
   height: 100px;
-  background-color: #eee;
+  background-color: #232323;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -32,7 +32,7 @@ session_start();
 }
 
         #header .logo a {
-  color: #333;
+  color: #c2c2c2;
   font-size: 30px;
 }
 
@@ -45,7 +45,7 @@ session_start();
 
 #header .nav__item a {
   padding: 10px 15px;
-  color: #333;
+  color: #c2c2c2;
   font-weight: bold;
 }
 
@@ -223,6 +223,7 @@ function displayResults(results) {
     });
 }
 
+
     </script>
 
 </head>
@@ -279,59 +280,15 @@ function displayResults(results) {
         }
         ?>
     </div>
+    <script>
+        var username = "<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : ''; ?>";
 
-    <!-- <script>
-        
-
-        
-        // 仮のデータ（実際のデータに置き換えてください）
-        const attractionsData = [
-            { name: '観光地1', region: 'nagoya', genre: 'food' },
-            { name: '観光地2', region: 'toyota', genre: 'amusement' },
-            // 他のデータを追加
-        ];
-
-        // 初期表示
-        displayResults(attractionsData);
-
-        function search() {
-            // プルダウンで選択された条件を取得
-            const selectedRegion = document.getElementById('region-select').value;
-            const selectedGenre = document.getElementById('genre-select').value;
-
-            // フィルタリングされた結果を取得
-            const filteredResults = attractionsData.filter(attraction => {
-                return (selectedRegion === 'all' || attraction.region === selectedRegion) &&
-                    (selectedGenre === 'all' || attraction.genre === selectedGenre);
-            });
-
-            // 結果を表示
-            displayResults(filteredResults);
+        // ユーザー名が存在する場合、ナビゲーションメニューのテキストを変更
+        if (username) {
+            document.getElementById("navList").innerHTML = '<li class="nav__item" id="usernameNavItem"><a href="../mypage/EditAccountInformation.html">' + username + '</a></li>' +
+                '<li class="nav__item"><a href="../login/logout.php">LOGOUT</a></li>';
         }
-
-        function displayResults(results) {
-            const resultsContainer = document.getElementById('results');
-            resultsContainer.innerHTML = ''; // 現在の結果をクリア
-
-            // 結果を表示
-            results.forEach(result => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <img src="images/${result.name.toLowerCase()}.jpg" alt="${result.name}">
-                    <div class="card-content">
-                        <h3>${result.name}</h3>
-                        <p>説明文や詳細情報など</p>
-                    </div>
-                `;
-                card.onclick = function () {
-                    showDetails(result.name, `images/${result.name.toLowerCase()}.jpg`);
-                };
-                resultsContainer.appendChild(card);
-            });
-        }
-
-    </script> -->
+    </script>
 </body>
 
 </html>
