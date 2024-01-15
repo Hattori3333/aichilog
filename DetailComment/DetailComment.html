@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>詳細・コメント画面</title>
+    <link rel="stylesheet" href="DetailComment.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .main {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 800px; /* 任意の幅に調整してください */
+        }
+
+        .left-side {
+            flex: 1;
+            margin-right: 20px; /* 写真と詳細情報の間隔を調整 */
+        }
+
+        .center-side {
+            flex: 2; /* 詳細情報が広がるように調整 */
+            text-align: center;
+            margin: 20px;
+        }
+
+        .right-side {
+            flex: 1;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .rate-form {
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-bottom: 20px; /* コメントフォームと星の表示の間隔を調整 */
+        }
+
+        .kaisha {
+            width: 100%;
+            text-align: left;
+        }
+
+        .kaisha th,
+        .kaisha td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .map {
+            width: 100%;
+            height: 300px; /* 任意の高さに調整してください */
+        }
+
+        /* 追加部分 */
+        .comments-section {
+            margin-top: 30px;
+        }
+
+        .sort-options {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 10px;
+        }
+
+        .user-comment {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .user-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .user-name {
+            font-weight: bold;
+        }
+
+        .comment-title {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .comment-content {
+            margin-bottom: 5px;
+        }
+
+        .comment-rating {
+            display: flex;
+            align-items: center;
+        }
+
+        .star {
+            color: gold;
+            margin-right: 5px;
+        }
+
+        .comment-photo {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .comment-section {
+            margin-top: 30px;
+        }
+
+        #comment-title,
+        #comment-content,
+        #submit-photo,
+        #submit-comment {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title">詳細画面</div>
+
+    <div class="main">
+        <div class="left-side">
+            <img src="imges/inuyama.jpg" alt="犬山城の画像">
+        </div>
+
+        <div class="center-side">
+            <div class="rate-form">
+                <!-- 星の表示（省略） -->
+            </div>
+
+            <div class="comments-section">
+                <div class="sort-options">
+                    <!-- ソートオプションの追加 -->
+                    <label for="sort">並べ替え：</label>
+                    <select id="sort" name="sort">
+                        <option value="newest">新着順</option>
+                        <option value="highest">高評価順</option>
+                        <option value="lowest">低評価順</option>
+                    </select>
+                </div>
+
+                <!-- コメントの例 -->
+                <div class="user-comment">
+                    <img class="user-icon" src="user-icon.jpg" alt="ユーザーアイコン">
+                    <div class="user-info">
+                        <div class="user-name">ユーザー名</div>
+                        <div class="comment-title">コメントタイトル</div>
+                        <div class="comment-content">コメント内容</div>
+                        <div class="comment-rating">
+                            <div class="star">★</div>
+                            <div class="star">★</div>
+                            <div class="star">★</div>
+                            <div class="star">★</div>
+                            <div class="star">★</div>
+                        </div>
+                    </div>
+                    <img class="comment-photo" src="comment-photo.jpg" alt="コメント写真">
+                </div>
+            </div>
+        </div>
+
+        <div class="right-side">
+            <table class="kaisha">
+                <tr>
+                    <th>営業時間</th>
+                    <td>データ１</td>
+                </tr>
+                <tr>
+                    <th>アクセス</th>
+                    <td>データ２</td>
+                </tr>
+                <tr>
+                    <th>所在地</th>
+                    <td>データ３</td>
+                </tr>
+            </table>
+
+            <iframe class= "map" src = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d59519.98012210198!2d136.8569597817615!3d35.176959624886386!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600376cbc7b0efb1%3A0xb9d3e9789275"></iframe>
+        </div>
+    </div>
+
+    <form action="comment_submit.php" method="post" class="comment-section">
+        <label for="comment_title">コメントタイトル</label><br>
+        <input type="text" id="comment_title" name="comment_title"><br><br>
+
+        <label for="comment_content">コメント</label><br>
+        <textarea id="comment_content" name="comment_content" rows="4" cols="30"></textarea><br><br>
+
+        <input type="file" id="submit-photo" accept="image/*">
+        <button id="submit-comment" onclick="submitComment()">コメント投稿</button>
+    </form>
+</body>
+
+</html>
