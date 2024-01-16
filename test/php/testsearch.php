@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $dsn = 'mysql:host=aichi-database-1.clra1wx84nvf.ap-south-1.rds.amazonaws.com;dbname=aichi_log_db;charset=UTF8mb4';
 $user = 'admin';
 $pass = 'password';
@@ -21,7 +23,12 @@ try {
 
         // 結果を取得
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($results);
+
+        // 結果をJSON形式で出力
+        echo json_encode($results, JSON_UNESCAPED_UNICODE);
+
+        // 結果をvar_dumpで確認
+        // var_dump($results);
     }
 
 } catch (PDOException $e) {
