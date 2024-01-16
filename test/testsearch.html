@@ -1,0 +1,298 @@
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>愛知県観光ガイド</title>
+    <style>
+        html {
+	        overflow: auto;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #111;
+            color: #fff;
+            overflow: hidden;
+        }
+        
+
+        #header {
+            width: 100vw;
+  height: 100px;
+  background-color: #232323;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  /* position: fixed; */
+  top: 0;
+  box-sizing: border-box;
+}
+
+        #header .logo a {
+  color: #c2c2c2;
+  font-size: 30px;
+}
+
+/* nav */
+
+#header .nav__list {
+  list-style: none;
+  display: flex;
+}
+
+#header .nav__item a {
+  padding: 10px 15px;
+  color: #c2c2c2;
+  font-weight: bold;
+}
+
+#header .nav__item a:hover {
+  text-decoration: underline;
+}
+
+form {
+  margin-top: 20px;
+}
+
+        #hero {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            /* height: 600px; */
+            overflow: hidden;
+        }
+
+        #hero-image {
+            width: 100vw;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity:.6;
+        }
+
+        #hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+        }
+
+        #search-bar {
+            text-align: center;
+            padding: 20px;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #search-bar select {
+            padding: 8px;
+            background-color: #222;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        #search-btn {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #results {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .card {
+            width: 300px;
+            margin: 20px;
+            border: 1px solid #444;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #222;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 16px;
+        }
+
+        /* 新しいスタイルを追加 */
+        .detail-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .detail-image {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px 0;
+        }
+
+        .rating {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #FFD700;
+        }
+
+        .rating span {
+            margin-right: 5px;
+        }
+
+        .detail-info {
+            text-align: left;
+        }
+    </style>
+
+    <script>
+        function search() {
+    var regionSelect = document.getElementById('region-select');
+    var genreSelect = document.getElementById('genre-select');
+
+    // 選択された値を取得
+    var region = regionSelect.value;
+    var genre = genreSelect.value;
+
+    // XMLHttpRequestを作成
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // データを受け取る処理
+            var responseData = JSON.parse(xhr.responseText);
+            console.log(responseData); // データをコンソールで表示
+
+            // 結果を表示
+            displayResults(responseData);
+        }
+    };
+
+    // フォームデータを作成
+    var formData = new FormData();
+    formData.append('region', region);
+    formData.append('genre', genre);
+
+    // リクエストを開始
+    xhr.open('POST', 'testsearch.php', true);
+    xhr.send(formData);
+}
+
+function displayResults(results) {
+    const resultsContainer = document.getElementById('results');
+    resultsContainer.innerHTML = ''; // 現在の結果をクリア
+
+    // 結果を表示
+    results.forEach(result => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <img src="images/${result.spot_name.toLowerCase()}.jpg" alt="${result.spot_name}">
+            <div class="card-content">
+                <h3>${result.spot_name}</h3>
+                <p>${result.spot_hour}</p>
+            </div>
+        `;
+        card.onclick = function () {
+            showDetails(result.spot_name, `images/${result.spot_name.toLowerCase()}.jpg`);
+        };
+        resultsContainer.appendChild(card);
+    });
+}
+
+
+    </script>
+
+</head>
+
+<body>
+
+    <header id="header">
+        <h1 class="logo"><a href="#">AICHI-LOG</a></h1>
+        <nav>
+            <ul class="nav__list" id="navList">
+                <li class="nav__item" id="loginNavItem"><a href="../login/login.html">LOGIN</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="hero">
+        <!-- ここに動画や画像の要素を追加 -->
+        <img id="hero-image" src="images/yakei.gif" alt="Hero Image">
+        <div id="hero-content">
+            <h1>愛知の魅力を発見しよう</h1>
+        </div>
+
+        <div id="search-bar">
+            <select id="region-select">
+                <option value="nagoya">名古屋市</option>
+                <option value="犬山市">犬山市</option>
+                <!-- 他の市のオプションを追加 -->
+            </select>
+
+            <select id="genre-select">
+                <option value="food">食べ物</option>
+                <option value="amusement">遊園地</option>
+                <option value="城">城</option>
+                <!-- 他のジャンルのオプションを追加 -->
+            </select>
+
+            <button id="search-btn" onclick="search()">検索</button>
+        </div>
+    </div>
+
+    <div id="results">
+        <?php
+        // データベースから取得した結果を元にカードを生成
+        if (isset($results)) {
+            foreach ($results as $result) {
+                echo '<div class="card">';
+                echo '<img src="images/' . strtolower($result['spot_name']) . '.jpg" alt="' . $result['spot_name'] . '">';
+                echo '<div class="card-content">';
+                echo '<h3>' . $result['spot_name'] . '</h3>';
+                echo '<p>' . $result['spot_hour'] . '</p>';
+                echo '</div>';
+                echo '</div>';
+            }
+        }
+        ?>
+    </div>
+    <script>
+        var username = "<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : ''; ?>";
+
+        // ユーザー名が存在する場合、ナビゲーションメニューのテキストを変更
+        if (username) {
+            document.getElementById("navList").innerHTML = '<li class="nav__item" id="usernameNavItem"><a href="../mypage/EditAccountInformation.html">' + username + '</a></li>' +
+                '<li class="nav__item"><a href="../login/logout.php">LOGOUT</a></li>';
+        }
+    </script>
+</body>
+
+</html>

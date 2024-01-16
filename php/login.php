@@ -31,7 +31,8 @@ try {
             $_SESSION['password'] = $user['password'];
 
             // ログイン成功時にsearch.htmlにリダイレクト
-            header('Location: ../search/search.html');
+            // header('Location: ../search/search.html');
+            header('Location: ../test/testsearch.html');
             exit;
         } else {
             echo 'メールアドレスまたはパスワードが正しくありません。';
