@@ -5,35 +5,175 @@
   <meta charset="UTF-8">
   <title>詳細・コメント画面</title>
   <link rel="stylesheet" href="DetailComment.css">
+  <!-- jQuery を読み込む -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- Firebase SDK を読み込む（コメント保存用） -->
+  <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js"></script>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #111;
+      padding: 150px 50px 50px;
+      margin: 0;
+    }
+
+    #header {
+      width: 100%;
+      height: 100px;
+      background-color: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      position: fixed;
+      top: 0;
+      box-sizing: border-box;
+      margin-right: 100px;
+    }
+
+    #header .logo a {
+      color: #333;
+      font-size: 30px;
+    }
+
+    #header .nav__list {
+      list-style: none;
+      display: flex;
+    }
+
+    #header .nav__item a {
+      padding: 10px 15px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    #header .nav__item a:hover {
+      text-decoration: underline;
+    }
+
+    .main {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .details {
+      width: 60%;
+      flex: 1;
+    }
+
+    .main img {
+      width: 25%;
+      height: auto;
+      margin-right: 20px;
+      border: 20px solid #ccc;
+      border-radius: 10px;
+      margin-top: 60px;
+    }
+
+    .details {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .description {
+      margin-top: 20px;
+    }
+
+    .description p {
+      margin-bottom: 10px;
+    }
+
+    header {
+      border: 2px solid black;
+      background-color: white;
+      padding: 10px;
+      box-sizing: border-box;
+      margin-bottom: 0;
+    }
+
+    h3 {
+      text-align: left;
+    }
+
+    #business-hours {
+      text-align: center;
+    }
+
+    .details {
+      width: 65%;
+    }
+
+    .api-container {
+      width: 35%;
+      height: 8cm;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 290px;
+    }
+
+    .map {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="title">詳細画面</div>
-
+  <header id="header">
+    <h1 class="logo"><a href="#">AICHI-LOG</a></h1>
+    <nav>
+      <ul class="nav__list" id="navList">
+        <li class="nav__item" id="loginNavItem"><a href="../login/login.html">LOGIN</a></li>
+      </ul>
+    </nav>
+  </header>
+  <header>
+    <h1>国宝犬山城について</h1>
+  </header>
   <div class="main">
-    <img src="imges/inuyama.jpg" alt="犬山城の画像">
-    <div class="details">
-      <table class="kaisha">
+    <img src="imges/inuyama.jpg" alt="犬山城の画像" style="width: 10cm; height: 10cm;">
+    <div class="details" style="width: 60%;">
+      <div class="description">
+        <h3>犬山城について</h3>
+        <p>犬山城は、愛知県犬山市にある平山城というタイプのお城です。現在も築城当時に近いとされる姿を残しており、天守閣は日本最古の様式を誇ります。平山城とは、平地にある丘や小さな山に建築されたお城のことを指します。犬山城は、望楼型三重4階地下2階という構造で、簡単に言えば地下2階と地上4階の合計6フロアの建物です。</p>
+      </div>
+      <table class="kaisha" style="width: 100%;">
         <tr>
           <th>営業時間</th>
-          <td><p>dddddddddddd</p></td>
+          <td>
+            <p id="business-hours">
+              公開：9:00~17:00 <br>
+              休業:12月29日~12月31日<br>
+              (16:30までの入城)
+            </p>
+          </td>
         </tr>
         <tr>
           <th>アクセス</th>
-          <td>データ２</td>
+          <td id="business-hours">
+            (1)犬山遊園地から徒歩で15分<p style="margin: 0;">犬山駅から徒歩で20分</p><p style="margin: 0;">小山ICから車で30分</p>
+          </td>
         </tr>
         <tr>
           <th>所在地</th>
-          <td>データ３</td>
+          <td id="business-hours">〒484-0082 愛知県犬山市犬山北古券６５−２</td>
         </tr>
       </table>
-      <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d59519.98012210198!2d136.8569597817615!3d35.176959624886386!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600376cbc7b0efb1%3A0xb9d3e9789275a677!2z5ZCN5Y-k5bGL5Z-O!5e0!3m2!1sja!2sjp!4v1698027108440!5m2!1sja!2sjp" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="api-container">
+      <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d59519.98012210198!2d136.8569597817615!3d35.176959624886386!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600376cbc7b0efb1%3A0xb9d3e9789275a677!2z5ZCN5Y-k5bGL5Z-O!5e0!3m2!1sja!2sjp!4v1698027108440!5m2!1sja!2sjp&key=YOUR_GOOGLE_MAPS_API_KEY" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="width: 100%; height: 100%;"></iframe>
     </div>
   </div>
-
   <div class="footer">
     <!-- 何かしらのフッターコンテンツ -->
   </div>
+  <script>
+    // 以下スクリプトは変更なし
+  </script>
 </body>
 
 </html>

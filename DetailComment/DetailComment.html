@@ -2,217 +2,400 @@
 <html lang="ja">
 
 <head>
-    <meta charset="UTF-8">
-    <title>詳細・コメント画面</title>
-    <link rel="stylesheet" href="DetailComment.css">
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+  <meta charset="UTF-8">
+  <title>詳細・コメント画面</title>
+  <link rel="stylesheet" href="DetailComment.css">
+  <!-- jQuery を読み込む -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- Firebase SDK を読み込む（コメント保存用） -->
+  <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js"></script>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #111;
+      padding: 150px 50px 50px;
+      margin: 0;
+    }
 
-        .main {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            max-width: 800px; /* 任意の幅に調整してください */
-        }
+    #header {
+      width: 100%;
+      height: 100px;
+      background-color: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      position: fixed;
+      top: 0;
+      box-sizing: border-box;
+      margin-right: 100px;
+    }
 
-        .left-side {
-            flex: 1;
-            margin-right: 20px; /* 写真と詳細情報の間隔を調整 */
-        }
+    #header .logo a {
+      color: #333;
+      font-size: 30px;
+    }
 
-        .center-side {
-            flex: 2; /* 詳細情報が広がるように調整 */
-            text-align: center;
-            margin: 20px;
-        }
+    #header .nav__list {
+      list-style: none;
+      display: flex;
+    }
 
-        .right-side {
-            flex: 1;
-            text-align: center;
-        }
+    #header .nav__item a {
+      padding: 10px 15px;
+      color: #333;
+      font-weight: bold;
+    }
 
-        .title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
+    #header .nav__item a:hover {
+      text-decoration: underline;
+    }
 
-        .rate-form {
-            margin-bottom: 20px;
-        }
+    .main {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
 
-        form {
-            margin-bottom: 20px; /* コメントフォームと星の表示の間隔を調整 */
-        }
+    .details {
+      width: 60%;
+      flex: 1;
+    }
 
-        .kaisha {
-            width: 100%;
-            text-align: left;
-        }
+    .main img {
+      width: 25%;
+      height: auto;
+      margin-right: 20px;
+      border: 20px solid #ccc;
+      border-radius: 10px;
+      margin-top: 60px;
+    }
 
-        .kaisha th,
-        .kaisha td {
-            padding: 8px;
-            border-bottom: 1px solid #ddd;
-        }
+    .details {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
 
-        .map {
-            width: 100%;
-            height: 300px; /* 任意の高さに調整してください */
-        }
+    .description {
+      margin-top: 20px;
+    }
 
-        /* 追加部分 */
-        .comments-section {
-            margin-top: 30px;
-        }
+    .description p {
+      margin-bottom: 10px;
+    }
 
-        .sort-options {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 10px;
-        }
+    header {
+      border: 2px solid black;
+      background-color: white;
+      padding: 10px;
+      box-sizing: border-box;
+      margin-bottom: 0;
+    }
 
-        .user-comment {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
-        }
+    h3 {
+      text-align: left;
+    }
 
-        .user-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
+    #business-hours {
+      text-align: center;
+    }
 
-        .user-info {
-            flex: 1;
-        }
+    .details {
+      width: 65%;
+    }
 
-        .user-name {
-            font-weight: bold;
-        }
+    .api-container {
+      width: 35%;
+      height: 8cm;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 290px;
+    }
 
-        .comment-title {
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
+    .map {
+      width: 100%;
+      height: 100%;
+    }
 
-        .comment-content {
-            margin-bottom: 5px;
-        }
+    .slideshow-container {
+      max-width: 100%;
+      height: auto;
+      position: relative;
+     overflow: hidden;/* 見栄えの調整用 */
+    }
 
-        .comment-rating {
-            display: flex;
-            align-items: center;
-        }
+    .mySlides {
+      display: none;
+    }
 
-        .star {
-            color: gold;
-            margin-right: 5px;
-        }
+    img.slide-img {
+      max-width: 100%;
+      height: 100%;
+     object-fit: cover;
+    }
 
-        .comment-photo {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 5px;
-        }
+    css
+ {
+  box-sizing: border-box;
+  outline: none;
+}
 
-        .comment-section {
-            margin-top: 30px;
-        }
+body {
+  font-family: Arial;
+  background-color: #111;
+  padding: 150px 50px 50px;
+  margin: 0;
+}
 
-        #comment-title,
-        #comment-content,
-        #submit-photo,
-        #submit-comment {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-    </style>
+
+.main {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+/* 画像と情報のブロック */
+.main {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start; /* 文章を画像の右横に配置 */
+}
+
+/* 画像のスタイル */
+.main img {
+  width: 25%; /* 画像を親要素の幅に合わせる */
+  height: auto; /* アスペクト比を維持 */
+  margin-right: 20px;
+  border: 20px solid #ccc; /* 灰色のフレーム */
+  border-radius: 10px; /* 枠の角を丸くする */
+}
+
+/* 情報のブロック */
+.details {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* 幅を100%に設定 */
+}
+
+
+/* 説明文のスタイル */
+.description {
+  margin-top: 20px; /* 適切なマージンを追加 */
+}
+
+
+/* 説明文の段落のスタイル */
+.description p {
+  margin-bottom: 10px;
+}
+
+
+
+.details {
+  text-align: center;
+}
+
+.kaisha {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.kaisha th, .kaisha td {
+  padding: 10px;
+  border: 1px solid #3498DB;
+}
+
+.map {
+  width: 30%;
+  height: 300px;
+  margin-top: 20px;
+  border: none;
+}
+
+.description {
+  color: #777;
+  margin-top: 20px;
+}
+
+.footer {
+  text-align: center;
+  color: #FFF;
+  margin-top: 20px;
+}
+
+/* Add your custom styles here */
+
+.login {
+  margin: 120px auto;
+  width: 300px;
+}
+
+.login-screen {
+  background-color: #FFF;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.app-title {
+  text-align: center;
+  color: #777;
+}
+
+.login-form {
+  text-align: center;
+}
+
+.control-group {
+  margin-bottom: 10px;
+}
+
+input {
+  text-align: center;
+  background-color: #ECF0F1;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 200;
+  padding: 10px 0;
+  width: 250px;
+  transition: border .5s;
+}
+
+input:focus {
+  border: 2px solid #3498DB;
+  box-shadow: none;
+}
+
+.btn {
+  border: 2px solid transparent;
+  background: #3498DB;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 25px;
+  padding: 10px 0;
+  text-decoration: none;
+  text-shadow: none;
+  border-radius: 3px;
+  box-shadow: none;
+  transition: 0.25s;
+  display: block;
+  width: 250px;
+  margin: 0 auto;
+}
+
+.btn:hover {
+  background-color: #FFFAF0;
+}
+
+.login-link {
+  font-size: 12px;
+  color: #444;
+  display: block;
+  margin-top: 12px;
+}
+
+.error-message {
+  color: red;
+  display: none;
+}
+
+
+  </style>
 </head>
 
 <body>
-    <div class="title">詳細画面</div>
-
-    <div class="main">
-        <div class="left-side">
-            <img src="imges/inuyama.jpg" alt="犬山城の画像">
-        </div>
-
-        <div class="center-side">
-            <div class="rate-form">
-                <!-- 星の表示（省略） -->
-            </div>
-
-            <div class="comments-section">
-                <div class="sort-options">
-                    <!-- ソートオプションの追加 -->
-                    <label for="sort">並べ替え：</label>
-                    <select id="sort" name="sort">
-                        <option value="newest">新着順</option>
-                        <option value="highest">高評価順</option>
-                        <option value="lowest">低評価順</option>
-                    </select>
-                </div>
-
-                <!-- コメントの例 -->
-                <div class="user-comment">
-                    <img class="user-icon" src="user-icon.jpg" alt="ユーザーアイコン">
-                    <div class="user-info">
-                        <div class="user-name">ユーザー名</div>
-                        <div class="comment-title">コメントタイトル</div>
-                        <div class="comment-content">コメント内容</div>
-                        <div class="comment-rating">
-                            <div class="star">★</div>
-                            <div class="star">★</div>
-                            <div class="star">★</div>
-                            <div class="star">★</div>
-                            <div class="star">★</div>
-                        </div>
-                    </div>
-                    <img class="comment-photo" src="comment-photo.jpg" alt="コメント写真">
-                </div>
-            </div>
-        </div>
-
-        <div class="right-side">
-            <table class="kaisha">
-                <tr>
-                    <th>営業時間</th>
-                    <td>データ１</td>
-                </tr>
-                <tr>
-                    <th>アクセス</th>
-                    <td>データ２</td>
-                </tr>
-                <tr>
-                    <th>所在地</th>
-                    <td>データ３</td>
-                </tr>
-            </table>
-
-            <iframe class= "map" src = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d59519.98012210198!2d136.8569597817615!3d35.176959624886386!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600376cbc7b0efb1%3A0xb9d3e9789275"></iframe>
-        </div>
+  <header id="header">
+    <h1 class="logo"><a href="#">AICHI-LOG</a></h1>
+    <nav>
+      <ul class="nav__list" id="navList">
+        <li class="nav__item" id="loginNavItem"><a href="../login/login.html">LOGIN</a></li>
+      </ul>
+    </nav>
+  </header>
+  <header>
+    <h1>国宝犬山城について</h1>
+  </header>
+  <div class="main">
+    <div class="slideshow-container">
+      <div class="mySlides">
+        <img src="imges/inuyama.jpg" alt="犬山城の画像" class="slide-img">
+      </div>
+      <div class="mySlides">
+        <img src="imges/inuyama2.jpg" alt="犬山城の画像" class="slide-img">
+      </div>
+      <div class="mySlides">
+        <img src="imges/inuyama3.jpg" alt="犬山城の画像" class="slide-img">
+      </div>
+      <div class="mySlides">
+        <img src="imges/inuyama4.jpg" alt="犬山城の画像" class="slide-img">
+      </div>
     </div>
 
-    <form action="comment_submit.php" method="post" class="comment-section">
-        <label for="comment_title">コメントタイトル</label><br>
-        <input type="text" id="comment_title" name="comment_title"><br><br>
+    <div class="details" style="width: 60%;">
+      <div class="description">
+        <h3>犬山城について</h3>
+        <p>犬山城は、愛知県犬山市にある平山城というタイプのお城です。現在も築城当時に近いとされる姿を残しており、天守閣は日本最古の様式を誇ります。平山城とは、平地にある丘や小さな山に建築されたお城のことを指します。犬山城は、望楼型三重4階地下2階という構造で、簡単に言えば地下2階と地上4階の合計6フロアの建物です。</p>
+      </div>
+      <table class="kaisha" style="width: 100%;">
+        <tr>
+          <th>営業時間</th>
+          <td>
+            <p id="business-hours">
+              公開：9:00~17:00 <br>
+              休業:12月29日~12月31日<br>
+              (16:30までの入城)
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <th>アクセス</th>
+          <td id="business-hours">
+            (1)犬山遊園地から徒歩で15分<p style="margin: 0;">犬山駅から徒歩で20分</p><p style="margin: 0;">小山ICから車で30分</p>
+          </td>
+        </tr>
+        <tr>
+          <th>所在地</th>
+          <td id="business-hours">〒484-0082 愛知県犬山市犬山北古券６５−２</td>
+        </tr>
+      </table>
+    </div>
+    <div class="api-container">
+      <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d59519.98012210198!2d136.8569597817615!3d35.176959624886386!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600376cbc7b0efb1%3A0xb9d3e9789275a677!2z5ZCN5Y-k5bGL5Z-O!5e0!3m2!1sja!2sjp!4v1698027108440!5m2!1sja!2sjp&key=YOUR_GOOGLE_MAPS_API_KEY" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="width: 100%; height: 100%;"></iframe>
+    </div>
+  </div>
+  <div class="footer">
+    <!-- 何かしらのフッターコンテンツ -->
+  </div>
 
-        <label for="comment_content">コメント</label><br>
-        <textarea id="comment_content" name="comment_content" rows="4" cols="30"></textarea><br><br>
 
-        <input type="file" id="submit-photo" accept="image/*">
-        <button id="submit-comment" onclick="submitComment()">コメント投稿</button>
-    </form>
+<script>
+     var slideIndex = 0;
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) { slideIndex = 1 }
+  slides[slideIndex - 1].style.display = "block";
+  setTimeout(showSlides, 3000); // 3秒ごとに切り替える（1000ミリ秒 = 1秒）
+}
+
+// ページ読み込み時にスライドショーを開始
+window.onload = function () {
+  showSlides();
+};
+    // 以下スクリプトは変更なし
+  </script>
+
+
 </body>
 
 </html>
