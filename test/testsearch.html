@@ -235,6 +235,37 @@ form {
         }
     }
 
+        // 新しい関数を作成
+    function showDetails(spot_name) {
+        // XMLHttpRequest を使用して詳細データを取得
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var detailData = JSON.parse(xhr.responseText);
+                // 詳細データを使って詳細ページに遷移
+                redirectToDetailPage(detailData);
+            }
+        };
+
+        // フォームデータを作成
+        var formData = new FormData();
+        formData.append('spot_name', spot_name);
+
+        // リクエストを開始
+        xhr.open('POST', 'get_detail_data.php', true);
+        xhr.send(formData);
+    }
+
+    // 詳細ページへのリダイレクト関数
+    function redirectToDetailPage(detailData) {
+        // 詳細データに基づいて遷移先のURLを構築
+        var detailPageURL = 'detail_page.php?spot_detail=' + encodeURIComponent(detailData.spot_detail);
+        
+        // リダイレクト
+        window.location.href = detailPageURL;
+    }
+
+
     </script>
 
 </head>

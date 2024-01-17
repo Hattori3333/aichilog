@@ -8,116 +8,6 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js"></script>
-  <style>
-    body {
-      font-family: Arial;
-      background-color: #111;
-      padding: 150px 50px 50px;
-      margin: 0;
-    }
-
-    #header {
-      width: 100%;
-      height: 100px;
-      background-color: #eee;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 30px;
-      position: fixed;
-      top: 0;
-      box-sizing: border-box;
-      margin-right: 100px;
-    }
-
-    #header .logo a {
-      color: #333;
-      font-size: 30px;
-    }
-
-    #header .nav__list {
-      list-style: none;
-      display: flex;
-    }
-
-    #header .nav__item a {
-      padding: 10px 15px;
-      color: #333;
-      font-weight: bold;
-    }
-
-    #header .nav__item a:hover {
-      text-decoration: underline;
-    }
-
-    .main {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-
-    .details {
-      width: 60%;
-      flex: 1;
-    }
-
-    .main img {
-      width: 25%;
-      height: auto;
-      margin-right: 20px;
-      border: 20px solid #26652a;
-      border-radius: 10px;
-      margin-top: 60px;
-    }
-
-    .details {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-    }
-
-    .description {
-      margin-top: 20px;
-    }
-
-    .description p {
-      margin-bottom: 10px;
-    }
-
-    header {
-      border: 2px solid black;
-      background-color: white;
-      padding: 10px;
-      box-sizing: border-box;
-      margin-bottom: 0;
-    }
-
-    h3 {
-      text-align: left;
-    }
-
-    #business-hours {
-      text-align: center;
-    }
-
-    .details {
-      width: 65%;
-    }
-
-    .api-container {
-      width: 35%;
-      height: 8cm;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      margin-top: 290px;
-    }
-
-    .map {
-      width: 100%;
-      height: 100%;
-    }
-  </style>
 </head>
 
 <body>
@@ -128,18 +18,28 @@
         <li class="nav__item" id="loginNavItem"><a href="../login/login.html">LOGIN</a></li>
       </ul>
     </nav>
-  </header>
-  <header>
-    <h1>国宝犬山城について</h1>
-  </header>
+  </header>>
   <div class="main">
-    <img src="imges/inuyama.jpg" alt="犬山城の画像" style="width: 10cm; height: 10cm;">
+    <div class="slideshow-container">
+      <div class="mySlides">
+        <img src="imges/inuyama.jpg" alt="犬山城の画像" class="slide-img" style="width: 10cm; height: 10cm;">
+      </div>
+      <div class="mySlides">
+        <img src="imges/inuyama2.jpg" alt="犬山城の画像" class="slide-img" style="width: 10cm; height: 10cm;">
+      </div>
+      <div class="mySlides">
+        <img src="imges/inuyama3.jpg" alt="犬山城の画像" class="slide-img" style="width: 10cm; height: 10cm;">
+      </div>
+      <div class="mySlides">
+        <img src="imges/inuyama4.jpg" alt="犬山城の画像" class="slide-img" style="width: 10cm; height: 10cm;">
+      </div>
+    </div>
     <div class="details" style="width: 60%;">
       <div class="description">
         <h3>犬山城について</h3>
         <p>犬山城は、愛知県犬山市にある平山城というタイプのお城です。現在も築城当時に近いとされる姿を残しており、天守閣は日本最古の様式を誇ります。平山城とは、平地にある丘や小さな山に建築されたお城のことを指します。犬山城は、望楼型三重4階地下2階という構造で、簡単に言えば地下2階と地上4階の合計6フロアの建物です。</p>
       </div>
-      <table class="kaisha" style="width: 100%;">
+      <table class="kaisha" style="width: 90%;">
         <tr>
           <th>営業時間</th>
           <td>
@@ -168,7 +68,187 @@
   </div>
   <div class="footer">
   </div>
+  <style>
+            * {
+    box-sizing: border-box;
+    }
+    
+    *:focus {
+      outline: none;
+    }
+    body {
+    font-family: Arial;
+    background-image: url('images/AICHI.jpeg');
+    padding: 50px;
+    padding: 50px;
+    }
+    .login {
+    margin: 120px auto ;
+    width: 300px;
+    }
+    .login-screen {
+    background-color: #FFF;
+    padding: 12px;
+    border-radius: 5px
+    }
+    
+    .app-title {
+    text-align: center;
+    color: #777;
+    }
+    
+    .login-form {
+    text-align: center;
+    }
+    .control-group {
+    margin-bottom: 10px;
+    }
+    
+    input {
+    text-align: center;
+    background-color: #ECF0F1;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 200;
+    padding: 10px 0;
+    width: 250px;
+    transition: border .5s;
+    }
+    
+    input:focus {
+    border: 2px solid #3498DB;
+    box-shadow: none;
+    }
+    
+    .btn {
+      border: 2px solid transparent;
+      background: #3498DB;
+      color: #ffffff;
+      font-size: 16px;
+      line-height: 25px;
+      padding: 10px 0;
+      text-decoration: none;
+      text-shadow: none;
+      border-radius: 3px;
+      box-shadow: none;
+      transition: 0.25s;
+      display: block;
+      width: 250px;
+      margin: 0 auto;
+    }
+    
+    .btn:hover {
+      background-color: #FFFAF0;
+    }
+    
+    .login-link {
+      font-size: 12px;
+      color: #444;
+      display: block;
+      margin-top: 12px;
+    }
+
+
+           body {
+      margin: 0;
+      padding: 0;
+    }
+    a {
+      text-decoration: none;
+    }
+    
+    /* header */
+    
+    #header {
+      width: 100%;
+      height: 100px;
+      background-color: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      position: fixed;
+      top: 0;
+      box-sizing: border-box;
+    }
+    #header .logo a {
+      color: #333;
+      font-size: 30px;
+    }
+    
+    /* nav */
+    
+    #header .nav__list {
+      list-style: none;
+      display: flex;
+    }
+    #header .nav__item a {
+      padding: 10px 15px;
+      color: #333;
+      font-weight: bold;
+    }
+    #header .nav__item a:hover {
+      text-decoration: underline;
+    }
+
+    .main img {
+  width: 25%; /* 画像を親要素の幅に合わせる */
+  height: auto; /* アスペクト比を維持 */
+  margin-right: 20px;
+  border: 20px solid #ccc; /* 灰色のフレーム */
+  border-radius: 10px; /* 枠の角を丸くする */
+}
+.map {
+  width: 30%;
+  height: 300px;
+  margin-top: 20px;
+  border: none;
+}
+
+.api-container {
+      width: 8cm;
+      height: 8cm;
+      margin-top: 5cm;
+    }
+
+    .main img {
+      width: 25%;
+      height: auto;
+      margin-right: 20px;
+      border: 10px solid #cccccc;
+      border-radius: 10px;
+      margin-top: 3cm;
+    }
+
+  </style>
   <script>
+     var slideIndex = 0;
+    var slides = document.getElementsByClassName("mySlides");
+
+    function showSlides() {
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1; }
+      slides[slideIndex - 1].style.display = "block";
+    }
+
+    function nextSlide() {
+      showSlides();
+    }
+
+    // クリックで次のスライドに切り替え
+    document.querySelector('.slideshow-container').addEventListener('click', nextSlide);
+
+    // 3秒ごとに自動で次のスライドに切り替え
+    setInterval(nextSlide, 10000);
+
+    // ページ読み込み時にスライドショーを開始
+    window.onload = function () {
+      showSlides();
+    };
   </script>
 </body>
 
