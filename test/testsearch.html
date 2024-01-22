@@ -259,7 +259,7 @@ form {
     // 詳細ページへのリダイレクト関数
     function redirectToDetailPage(detailData) {
         // 詳細データに基づいて遷移先のURLを構築
-        var detailPageURL = 'detail_page.php?spot_detail=' + encodeURIComponent(detailData.spot_detail);
+        var detailPageURL = 'detail_page.php?spot_name=' + encodeURIComponent(detailData.spot_name);
         
         // リダイレクト
         window.location.href = detailPageURL;
