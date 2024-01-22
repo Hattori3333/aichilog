@@ -8,22 +8,26 @@ try {
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     ]);
 
-    // カードがクリックされた観光地の spot_name を取得
-    $spot_name = $_POST['spot_name'];
+    // POST データから spot_name を取得
+    $spot_name = isset($_POST['spot_name']) ? $_POST['spot_name'] : '';
 
-    // プリペアドステートメントを使用して詳細データを取得
-    $stmt = $dbh->prepare("SELECT spot_detail FROM spot WHERE spot_name = :spot_name");
+
+    // プリペアドステートメントを使用して SQL インジェクションを防ぐ
+    $stmt = $dbh->prepare("SELECT spot_name, spot_hour, spot_location, spot_access, spot_detail FROM spot WHERE spot_name = :spot_name");
     $stmt->bindParam(':spot_name', $spot_name, PDO::PARAM_STR);
     $stmt->execute();
 
-    // 結果を取得
-    $detailData = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // 結果をJSON形式で出力
-    echo json_encode($detailData);
+
+    // 結果を取得
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+    // 結果を JSON 形式で出力
+    echo json_encode($result);
 
 } catch (PDOException $e) {
-    echo 'エラー: ' . $e->getMessage();
+    echo '接続失敗' . $e->getMessage();
     exit();
 }
 ?>

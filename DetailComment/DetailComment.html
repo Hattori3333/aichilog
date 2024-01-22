@@ -36,14 +36,18 @@
     </div>
     <div class="details" style="width: 60%;">
       <div class="description">
-        <h3>犬山城について</h3>
+        <div id="spot_name">
+        <h2>犬山城について</h2>
+      </div>
+        <div id="spot_detail">
         <p>犬山城は、愛知県犬山市にある平山城というタイプのお城です。現在も築城当時に近いとされる姿を残しており、天守閣は日本最古の様式を誇ります。平山城とは、平地にある丘や小さな山に建築されたお城のことを指します。犬山城は、望楼型三重4階地下2階という構造で、簡単に言えば地下2階と地上4階の合計6フロアの建物です。</p>
+      </div>
       </div>
       <table class="kaisha" style="width: 90%;">
         <tr>
           <th>営業時間</th>
           <td>
-            <p id="business-hours">
+            <p id="spot_hour">
               公開：9:00~17:00 <br>
               休業:12月29日~12月31日<br>
               (16:30までの入城)
@@ -52,13 +56,13 @@
         </tr>
         <tr>
           <th>アクセス</th>
-          <td id="business-hours">
+          <td id="spot_access">
             (1)犬山遊園地から徒歩で15分<p style="margin: 0;">(2)犬山駅から徒歩で20分</p><p style="margin: 0;">(3)小山ICから車で30分</p>
           </td>
         </tr>
         <tr>
           <th>所在地</th>
-          <td id="business-hours">〒484-0082 愛知県犬山市犬山北古券６５−２</td>
+          <td id="spot_location">〒484-0082 愛知県犬山市犬山北古券６５−２</td>
         </tr>
       </table>
     </div>
@@ -78,11 +82,10 @@
     }
     body {
     font-family: Arial;
-    background-image: url('images/haikei.png');
-    background-size: cover; 
-    background-repeat: no-repeat; 
-}
-
+    background-image: url('images/AICHI.jpeg');
+    padding: 50px;
+    padding: 50px;
+    }
     .login {
     margin: 120px auto ;
     width: 300px;
@@ -257,6 +260,7 @@
 /* 説明文のスタイル */
 .description {
   margin-top: 20px; /* 適切なマージンを追加 */
+  padding-top: 50px;
 }
 
 
