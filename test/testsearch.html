@@ -221,7 +221,6 @@ form {
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
-                    <img src="images/${result.spot_name.toLowerCase()}.jpg" alt="${result.spot_name}">
                     <div class="card-content">
                         <h3>${result.spot_name}</h3>
                         <p>${result.spot_hour}</p>
@@ -296,8 +295,8 @@ form {
             </select>
 
             <select id="genre-select">
-                <option value="food">食べ物</option>
-                <option value="amusement">遊園地</option>
+                <option value="食べ物">食べ物</option>
+                <option value="遊園地">遊園地</option>
                 <option value="城">城</option>
                 <!-- 他のジャンルのオプションを追加 -->
             </select>
@@ -312,7 +311,6 @@ form {
         if (isset($results)) {
             foreach ($results as $result) {
                 echo '<div class="card">';
-                echo '<img src="images/' . strtolower($result['spot_name']) . '.jpg" alt="' . $result['spot_name'] . '">';
                 echo '<div class="card-content">';
                 echo '<h3>' . $result['spot_name'] . '</h3>';
                 echo '<p>' . $result['spot_hour'] . '</p>';
