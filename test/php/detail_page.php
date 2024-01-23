@@ -98,7 +98,7 @@ form {
 
 <body>
     <header id="header">
-            <h1 class="logo"><a href="#">AICHI-LOG</a></h1>
+            <h1 class="logo"><a href="../test/testsearch.html">AICHI-LOG</a></h1>
             <nav>
                 <ul class="nav__list" id="navList">
                     <li class="nav__item" id="loginNavItem"><a href="../login/login.html">LOGIN</a></li>

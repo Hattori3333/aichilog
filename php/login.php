@@ -35,7 +35,7 @@ try {
             header('Location: ../test/testsearch.html');
             exit;
         } else {
-            echo 'メールアドレスまたはパスワードが正しくありません。';
+            echo '<p>メールアドレスまたはパスワードが正しくありません。<p><a href="login.html">戻る</a>';
         }
     }
 
